@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { 
-  Hotel, Utensils, Car, Compass, Calendar, Plane, ArrowRight 
+import {
+  Hotel, Utensils, Car, Compass, Calendar, Plane
 } from 'lucide-react';
 
 interface InclusionData {
@@ -69,9 +68,8 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={handleMouseLeave}
-        className={`relative w-full h-full rounded-[32px] border border-white/8 bg-gradient-to-b from-[#11192d]/92 via-[#0a101f]/95 to-[#050913] backdrop-blur-3xl p-8 text-left transition-all duration-300 ease-out select-none flex flex-col justify-between overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] min-h-[280px] ${
-          hovered ? `${data.glowColor} ${data.borderColor}` : 'shadow-none'
-        }`}
+        className={`relative w-full h-full rounded-[32px] border border-white/8 bg-gradient-to-b from-[#11192d]/92 via-[#0a101f]/95 to-[#050913] backdrop-blur-3xl p-8 text-left transition-all duration-300 ease-out select-none flex flex-col justify-between overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)] min-h-[280px] ${hovered ? `${data.glowColor} ${data.borderColor}` : 'shadow-none'
+          }`}
         style={{
           transform: hovered
             ? `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
@@ -83,7 +81,7 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
         <div
           className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
           style={{
-            background: hovered 
+            background: hovered
               ? `radial-gradient(circle 240px at ${lightX}% ${lightY}%, rgba(255,255,255,0.10), transparent 70%)`
               : 'none',
             opacity: hovered ? 1 : 0
@@ -91,8 +89,8 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
         />
 
         {/* Ambient Corner Base Glow */}
-        <div 
-          className="absolute right-0 bottom-0 w-64 h-64 pointer-events-none z-0 transition-opacity duration-500 rounded-full blur-[80px]" 
+        <div
+          className="absolute right-0 bottom-0 w-64 h-64 pointer-events-none z-0 transition-opacity duration-500 rounded-full blur-[80px]"
           style={{
             background: `radial-gradient(circle at 100% 100%, ${data.iconGlow}, transparent 70%)`,
             opacity: hovered ? 0.35 : 0.12
@@ -106,20 +104,20 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
 
         {/* Content Layers */}
         <div className="relative z-10 flex flex-col justify-between h-full w-full" style={{ transform: 'translateZ(32px)' }}>
-          
+
           {/* Top Section */}
           <div className="flex flex-col items-start mb-10">
-            <div 
+            <div
               className="relative w-[72px] h-[72px] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-gold)] shadow-[inset_0_2px_4px_rgba(255,255,255,0.12)] backdrop-blur-md transition-all duration-500"
               style={{
                 marginBottom: '48px',
-                boxShadow: hovered 
-                  ? `0 12px 24px ${data.iconGlow}, inset 0 2px 4px rgba(255,255,255,0.15)` 
+                boxShadow: hovered
+                  ? `0 12px 24px ${data.iconGlow}, inset 0 2px 4px rgba(255,255,255,0.15)`
                   : 'inset 0 2px 4px rgba(255,255,255,0.12)'
               }}
             >
-              <div 
-                className="absolute inset-0 rounded-full blur-md opacity-40 -z-10" 
+              <div
+                className="absolute inset-0 rounded-full blur-md opacity-40 -z-10"
                 style={{ backgroundColor: data.iconGlow }}
               />
               <span className={`transition-transform duration-500 ${hovered ? 'scale-110 rotate-6' : 'scale-100'}`}>
@@ -128,7 +126,7 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
             </div>
 
             {/* Title */}
-            <h3 
+            <h3
               className="text-xl font-bold text-white mb-[18px] tracking-tight leading-tight"
               style={{ fontFamily: 'var(--font-heading)' }}
             >
@@ -136,7 +134,7 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
             </h3>
 
             {/* Description */}
-            <p 
+            <p
               className="text-[14px] text-white/50 leading-relaxed font-sans"
               style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.45)' }}
             >
@@ -147,7 +145,7 @@ const InclusionCard: React.FC<InclusionCardProps> = ({ data, index }) => {
           {/* Bottom CTA */}
           <div className="flex items-center justify-center gap-2 text-[10px] font-extrabold uppercase tracking-[0.25em] text-white/35 group-hover:text-[var(--color-gold)] transition-colors pt-6 border-t border-white/5 w-full">
             <span className="text-[10px] font-bold text-white/40 tracking-[0.2em]">{data.ctaText}</span>
-            <motion.span 
+            <motion.span
               animate={hovered ? { x: 5 } : { x: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 15 }}
               className="text-white/40"
@@ -263,7 +261,7 @@ const InclusionsSection: React.FC = () => {
   ];
 
   return (
-    <section 
+    <section
       className="relative w-full overflow-hidden bg-slate-950 border-t border-white/8 flex flex-col items-center justify-center"
       style={{ paddingTop: '20px', paddingBottom: '20px' }}
     >
@@ -273,24 +271,24 @@ const InclusionsSection: React.FC = () => {
 
       {/* Center content container to match the rest of the site's grid */}
       <div className="section-container w-full relative z-10 flex flex-col items-center justify-center">
-        
+
         {/* ── HEADER ON TOP (Centered layout with generous spacing) ── */}
         <div className="flex flex-col items-center justify-center text-center max-w-3xl w-full" style={{ marginBottom: '30px' }}>
-          <span 
+          <span
             className="text-[9px] font-extrabold uppercase tracking-[0.3em] text-[var(--color-gold)] border border-[var(--color-gold)]/25 bg-[var(--color-gold)]/8 rounded-[4px] px-4 py-2 mb-7 text-center block"
             style={{ fontFamily: 'var(--font-body)' }}
           >
             Every Package Includes
           </span>
 
-          <h2 
+          <h2
             className="text-3xl sm:text-4xl lg:text-[44px] font-bold leading-[1.15] tracking-tight text-white mb-8 text-center w-full"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
             Travel Without Worry. We've Covered <span className="text-gold-gradient">Everything</span>.
           </h2>
 
-          <p 
+          <p
             className="text-base text-white/50 leading-relaxed max-w-2xl font-sans text-center"
             style={{ fontFamily: 'var(--font-body)', fontSize: '16px', color: 'rgba(255,255,255,0.45)' }}
           >
