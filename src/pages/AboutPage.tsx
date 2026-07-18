@@ -1,10 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Compass, Users, Award, ShieldCheck, Heart, Leaf,
-  Star, MapPin, ArrowRight, CheckCircle,
-  Headphones, Zap, Globe
+  Star, ArrowRight, CheckCircle,
+  Headphones, Zap
 } from 'lucide-react';
 import TestimonialsSection from '../components/Testimonials/TestimonialsSection';
 
