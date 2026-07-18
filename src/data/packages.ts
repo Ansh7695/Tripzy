@@ -1,0 +1,155 @@
+export interface Package {
+  id: number;
+  title: string;
+  location: string;
+  country: string;
+  duration: string;
+  price: string;
+  rating: number;
+  groupSize: string;
+  luxuryLevel: 'Standard' | 'Premium' | 'Luxury' | 'Ultra-Luxury';
+  category: string;
+  desc: string;
+  highlights: string[];
+  image: string;
+  bgImage: string;
+  badge?: string;
+}
+
+export const packages: Package[] = [
+  {
+    id: 1,
+    title: 'Kerala Backwaters',
+    location: 'Kerala, India',
+    country: 'India',
+    duration: '5 Days',
+    price: '₹64,900',
+    rating: 4.8,
+    groupSize: '2–8',
+    luxuryLevel: 'Premium',
+    category: 'Beaches',
+    badge: 'Best Seller',
+    desc: 'Glide through houseboats along coco-fringed canals, enjoy freshly caught seafood, and stay in luxurious ayurvedic resorts.',
+    highlights: ['Private Houseboat', 'Ayurvedic Spa', 'Village Walk', 'Cooking Class'],
+    image: 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 2,
+    title: 'Ladakh High Passes',
+    location: 'Leh-Ladakh, India',
+    country: 'India',
+    duration: '7 Days',
+    price: '₹89,900',
+    rating: 4.9,
+    groupSize: '4–12',
+    luxuryLevel: 'Luxury',
+    category: 'Mountains',
+    badge: 'Top Rated',
+    desc: 'Drive through the highest motorable passes, admire deep-blue Pangong Lake, and visit ancient clifftop Buddhist monasteries.',
+    highlights: ['Pangong Lake', 'Khardung La Pass', 'Monastery Tour', 'Stargazing'],
+    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 3,
+    title: 'Andaman Beach Retreat',
+    location: 'Havelock Island, Andamans',
+    country: 'India',
+    duration: '6 Days',
+    price: '₹1,19,900',
+    rating: 4.9,
+    groupSize: '2–6',
+    luxuryLevel: 'Ultra-Luxury',
+    category: 'Beaches',
+    badge: 'Editor\'s Pick',
+    desc: 'Dive into crystal-clear waters, trek to elephant beach, and stay at premium eco-friendly beachfront luxury villas.',
+    highlights: ['Snorkelling', 'Elephant Beach', 'Radhanagar Beach', 'Luxury Bungalow'],
+    image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 4,
+    title: 'Rajasthan Royal Circuit',
+    location: 'Rajasthan, India',
+    country: 'India',
+    duration: '8 Days',
+    price: '₹1,09,900',
+    rating: 4.8,
+    groupSize: '2–10',
+    luxuryLevel: 'Ultra-Luxury',
+    category: 'Heritage',
+    badge: 'New',
+    desc: 'Stay in heritage havelis, ride camels at golden dunes, and explore magnificent forts across the royal desert kingdom.',
+    highlights: ['Jaisalmer Fort', 'Camel Safari', 'Heritage Haveli Stay', 'Puppet Show'],
+    image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 5,
+    title: 'Varanasi Dawn & Rituals',
+    location: 'Uttar Pradesh, India',
+    country: 'India',
+    duration: '3 Days',
+    price: '₹34,900',
+    rating: 4.8,
+    groupSize: '2–8',
+    luxuryLevel: 'Standard',
+    category: 'Spiritual',
+    desc: 'Witness Ganga Aarti from a private boat, explore winding historic alleys, and discover ancient temples at dawn.',
+    highlights: ['Ganga Aarti', 'Private Boat', 'Temple Tour', 'Sunrise Walk'],
+    image: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 6,
+    title: 'Manali Scenic Valleys',
+    location: 'Himachal Pradesh, India',
+    country: 'India',
+    duration: '5 Days',
+    price: '₹38,900',
+    rating: 4.6,
+    groupSize: '2–12',
+    luxuryLevel: 'Standard',
+    category: 'Mountains',
+    desc: 'Walk through deodar forests, experience paragliding in Solang Valley, and cross the magnificent Atal Tunnel.',
+    highlights: ['Solang Valley', 'Paragliding', 'Rohtang Pass', 'Atal Tunnel'],
+    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 7,
+    title: 'Goa Coastal Escape',
+    location: 'Goa, India',
+    country: 'India',
+    duration: '4 Days',
+    price: '₹49,900',
+    rating: 4.7,
+    groupSize: '2–8',
+    luxuryLevel: 'Premium',
+    category: 'Beaches',
+    desc: 'Unwind on gold-sand beaches, explore heritage Portuguese villas, and dance the night away at vibrant beachside shacks.',
+    highlights: ['Baga Beach', 'Heritage Walk', 'Water Sports', 'Spice Plantation'],
+    image: 'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?auto=format&fit=crop&w=1920&q=80',
+  },
+  {
+    id: 8,
+    title: 'Leh–Manali Bike Roadtrip',
+    location: 'Himalayas, India',
+    country: 'India',
+    duration: '10 Days',
+    price: '₹1,39,900',
+    rating: 4.9,
+    groupSize: '4–10',
+    luxuryLevel: 'Luxury',
+    category: 'Adventure',
+    badge: 'Most Popular',
+    desc: 'The ultimate bucket list motorcycle ride across the rugged Himalayas — through riverbeds, desert stretches, and high ridges.',
+    highlights: ['Khardung La', 'Baralacha La Pass', 'Camping', 'Royal Enfield'],
+    image: 'https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=1920&q=80',
+  },
+];
+
+export const categories = ['All', 'Beaches', 'Mountains', 'Spiritual', 'Adventure', 'Heritage'];
