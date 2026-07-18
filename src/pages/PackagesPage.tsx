@@ -6,6 +6,7 @@ import {
   Headphones, Zap, Award, Compass, CheckCircle
 } from 'lucide-react';
 import { packages, categories, type Package } from '../data/packages';
+import InclusionsSection from '../components/InclusionsSection';
 
 // ─── Luxury Badge ────────────────────────────────────────────
 const luxuryColors: Record<string, string> = {
@@ -601,6 +602,9 @@ const PackagesPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ═══════════ WHAT'S INCLUDED ═══════════ */}
+      <InclusionsSection />
 
       {/* ═══════════ CTA BANNER ═══════════ */}
       <section className="relative overflow-hidden min-h-[50vh] flex items-center">

@@ -4,6 +4,7 @@ import HeroSection from '../components/Hero/HeroSection';
 import TopPackagesSection from '../components/TopPackages/TopPackagesSection';
 import TestimonialsSection from '../components/Testimonials/TestimonialsSection';
 import ScrapbookSection from '../components/Scrapbook/ScrapbookSection';
+import InclusionsSection from '../components/InclusionsSection';
 import ContactCTA from '../components/ContactCTA';
 
 const destinationRibbon = [
@@ -46,7 +47,10 @@ const HomePage: React.FC = () => {
       {/* 5. TRAVEL SCRAPBOOK */}
       <ScrapbookSection />
 
-      {/* 6. CONTACT CTA */}
+      {/* 6. WHAT'S INCLUDED */}
+      <InclusionsSection />
+
+      {/* 7. CONTACT CTA */}
       <ContactCTA />
     </div>
   );

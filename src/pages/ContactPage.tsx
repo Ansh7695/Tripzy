@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Compass, Globe, ArrowRight } from 'lucide-react';
+import ContactEnquirySection from '../components/ContactEnquirySection';
 
 const ContactPage: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -96,6 +97,9 @@ const ContactPage: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* ═══════════ CONTACT & ENQUIRY SECTION ═══════════ */}
+      <ContactEnquirySection />
 
       {/* ═══════════ 2. OFFICE INFORMATION (Editorial Split) ═══════════ */}
       <section className="relative z-10 py-20 bg-slate-950" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
