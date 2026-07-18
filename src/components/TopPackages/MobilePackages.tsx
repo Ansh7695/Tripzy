@@ -137,16 +137,9 @@ export const MobilePackages: React.FC<MobilePackagesProps> = ({ destinations }) 
                   </div>
                 </div>
 
-                {/* Price row */}
-                <div className="flex items-end justify-between border-t border-white/10 pt-3">
-                  <div>
-                    <span className="text-[9px] text-white/30 uppercase tracking-wider block mb-0.5">Starting from</span>
-                    <span className="text-[22px] font-extrabold leading-none" style={{ color: 'var(--color-gold)', fontFamily: 'var(--font-heading)' }}>
-                      {dest.price}
-                    </span>
-                    <span className="text-[9px] text-white/25 block mt-0.5">Per Person</span>
-                  </div>
-                  <button className="btn-outline py-2.5 px-5 text-[11px]">
+                {/* Action row */}
+                <div className="flex justify-end border-t border-white/10 pt-3">
+                  <button className="btn-outline py-2.5 px-5 text-[11px] w-full flex items-center justify-center gap-1.5">
                     Explore
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>

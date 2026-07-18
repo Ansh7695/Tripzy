@@ -141,20 +141,8 @@ const PackageCard: React.FC<{
           </div>
         </div>
 
-        {/* Price + CTA */}
-        <div className="flex items-end justify-between border-t border-white/10 pt-3">
-          <div>
-            <span className="text-[9px] text-white/35 uppercase tracking-wider block mb-0.5">Starting from</span>
-            <motion.span
-              className="text-[22px] font-extrabold leading-none"
-              style={{ color: 'var(--color-gold)', fontFamily: 'var(--font-heading)' }}
-              animate={{ opacity: isActive && hovered ? 1 : 0.9 }}
-            >
-              {dest.price}
-            </motion.span>
-            <span className="text-[9px] text-white/30 block mt-0.5">Per Person</span>
-          </div>
-
+        {/* Action / CTA row */}
+        <div className="flex items-center justify-end border-t border-white/10 pt-3 min-h-[44px]">
           <AnimatePresence>
             {isActive && (
               <motion.button
@@ -162,14 +150,17 @@ const PackageCard: React.FC<{
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 12 }}
                 transition={{ duration: 0.25 }}
-                className="btn-outline py-2 px-4 text-[10px]"
+                className="btn-outline py-2 px-6 text-[10px] w-full flex items-center justify-center gap-1.5"
                 onClick={(e) => e.stopPropagation()}
               >
-                Explore
+                Explore Tour
                 <ArrowRight className="w-3 h-3" />
               </motion.button>
             )}
           </AnimatePresence>
+          {!isActive && (
+            <span className="text-[10px] text-white/30 tracking-wider">Explore</span>
+          )}
         </div>
       </div>
     </motion.div>

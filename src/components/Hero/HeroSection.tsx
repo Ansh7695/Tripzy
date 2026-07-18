@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="dark-section relative w-full min-h-screen md:h-screen flex flex-col justify-center overflow-hidden bg-[var(--color-navy)] text-white select-none"
+      className="dark-section relative w-full min-h-screen md:h-screen flex flex-col justify-center overflow-hidden bg-[var(--color-navy)] text-white"
     >
       {/* Background Tree — positioned right 45% */}
       <div className="gsap-tree absolute inset-0 w-full h-full z-0">
@@ -123,7 +123,7 @@ const HeroSection: React.FC = () => {
         </motion.div>
 
         {/* Stats Strip — full width at bottom */}
-        <div className="gsap-stats w-full mt-8 md:mt-auto mb-10 md:mb-0">
+        <div className="gsap-stats w-full mt-8 md:mt-auto mb-10 md:mb-0 relative" style={{ bottom: '40px' }}>
           <StatsStrip />
         </div>
       </div>

@@ -52,13 +52,6 @@ const PackageCard: React.FC<{ pkg: Package; index: number }> = ({ pkg, index }) 
           )}
         </div>
 
-        {/* Price */}
-        <div className="absolute bottom-3 right-3">
-          <div className="bg-slate-950/80 backdrop-blur-md border border-white/10 rounded-[6px] px-3 py-1.5 text-right">
-            <span className="text-[9px] text-white/40 uppercase block">From</span>
-            <span className="text-base font-extrabold text-white">{pkg.price}</span>
-          </div>
-        </div>
       </div>
 
       {/* Body */}
@@ -165,7 +158,7 @@ const PackagesPage: React.FC = () => {
     { icon: <Shield className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Safe & Verified', desc: 'Every route hand-scouted by our field teams. Emergency support on every expedition.' },
     { icon: <Headphones className="w-5 h-5 text-[var(--color-gold)]" />, title: '24×7 Support', desc: 'Round-the-clock assistance from our dedicated travel experts, wherever you are.' },
     { icon: <Zap className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Flexible Plans', desc: 'Fully customizable dates, group sizes, and budgets. Your trip, your rules.' },
-    { icon: <Award className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Best Price', desc: 'No hidden fees. Transparent pricing with exclusive member discounts on all packages.' },
+    { icon: <Award className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Bespoke Comfort', desc: 'Curated boutique stays, private transfers, and luxury amenities at every stage.' },
   ];
 
   return (
