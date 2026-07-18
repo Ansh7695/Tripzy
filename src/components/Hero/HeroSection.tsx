@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Compass } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import AnimatedTree from './AnimatedTree';
-import LiveStatusCard from './LiveStatusCard';
 import StatsStrip from './StatsStrip';
 import ScrollIndicator from './ScrollIndicator';
 

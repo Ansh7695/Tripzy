@@ -3,8 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom';
 import {
   ArrowRight, Star, Calendar, Users, MapPin, Shield,
-  Headphones, Zap, Award, ChevronLeft, ChevronRight,
-  Compass, CheckCircle
+  Headphones, Zap, Award, Compass, CheckCircle
 } from 'lucide-react';
 import { packages, categories, type Package } from '../data/packages';
 
@@ -121,26 +120,7 @@ const PackageCard: React.FC<{ pkg: Package; index: number }> = ({ pkg, index }) 
   );
 };
 
-// ─── Feature Card ─────────────────────────────────────────────
-const FeatureCard: React.FC<{ icon: React.ReactNode; title: string; desc: string; delay?: number }> = ({ icon, title, desc, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-    whileHover={{ y: -6, transition: { duration: 0.25 } }}
-    className="relative p-6 rounded-[20px] bg-white/4 border border-white/8 backdrop-blur-md group overflow-hidden"
-  >
-    <div className="absolute inset-0 bg-gradient-to-br from-white/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-[20px]" />
-    <div className="relative z-10">
-      <div className="w-11 h-11 rounded-[8px] bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/20 flex items-center justify-center mb-4 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
-        {icon}
-      </div>
-      <h4 className="text-base font-bold text-white mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{title}</h4>
-      <p className="text-xs text-white/45 leading-relaxed">{desc}</p>
-    </div>
-  </motion.div>
-);
+
 
 // ─── Main Page ────────────────────────────────────────────────
 const PackagesPage: React.FC = () => {

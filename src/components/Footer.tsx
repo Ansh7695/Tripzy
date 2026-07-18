@@ -1,22 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Compass, Mail, Phone, MapPin, Clock, ArrowRight, Send
+  Compass, Mail, Phone, MapPin, Clock
 } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [focused, setFocused] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      alert(`Thank you for subscribing, ${email}!`);
-      setEmail('');
-    }
-  };
-
   return (
     <footer className="w-full relative border-t border-white/8 bg-gradient-to-b from-[#0a1020] via-[#080d1a] to-[#050914] overflow-hidden py-20 lg:py-24">
       {/* Soft background glows */}

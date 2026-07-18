@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, MapPin, Clock, Users, Heart, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Star, Clock, Users, Heart, ArrowRight } from 'lucide-react';
 import type { Destination } from '../../data/destinations';
 
 interface MobilePackagesProps {
@@ -11,7 +11,6 @@ export const MobilePackages: React.FC<MobilePackagesProps> = ({ destinations }) 
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [liked, setLiked] = useState<{ [key: number]: boolean }>({});
-  const dragStartX = useRef(0);
 
   const goTo = (newIndex: number, dir: number) => {
     if (newIndex < 0 || newIndex >= destinations.length) return;

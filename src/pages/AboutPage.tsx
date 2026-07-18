@@ -3,33 +3,12 @@ import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Compass, Users, Award, ShieldCheck, Heart, Leaf,
-  Star, Clock, MapPin, ArrowRight, CheckCircle,
+  Star, MapPin, ArrowRight, CheckCircle,
   Headphones, Zap, Globe
 } from 'lucide-react';
 import TestimonialsSection from '../components/Testimonials/TestimonialsSection';
 
-// ─── Animated Counter ─────────────────────────────────────────
-const Counter: React.FC<{ target: number; suffix?: string; prefix?: string; duration?: number }> = ({
-  target, suffix = '', prefix = '', duration = 2200,
-}) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
 
-  useEffect(() => {
-    if (!inView) return;
-    const step = target / (duration / 16);
-    let curr = 0;
-    const t = setInterval(() => {
-      curr = Math.min(curr + step, target);
-      setCount(Math.floor(curr));
-      if (curr >= target) clearInterval(t);
-    }, 16);
-    return () => clearInterval(t);
-  }, [inView, target, duration]);
-
-  return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
-};
 
 // ─── Value Card ───────────────────────────────────────────────
 const ValueCard: React.FC<{ icon: React.ReactNode; title: string; desc: string; delay?: number }> = ({ icon, title, desc, delay = 0 }) => (
@@ -52,38 +31,7 @@ const ValueCard: React.FC<{ icon: React.ReactNode; title: string; desc: string; 
   </motion.div>
 );
 
-// ─── Team Card ────────────────────────────────────────────────
-const TeamCard: React.FC<{ role: string; delay?: number }> = ({ role, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-    whileHover={{ y: -8, transition: { duration: 0.3 } }}
-    className="group relative rounded-[24px] overflow-hidden bg-white/4 border border-white/8 text-center pb-5"
-  >
-    <div className="relative h-48 overflow-hidden bg-white/3 flex items-center justify-center">
-      <img 
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=400&q=80" 
-        alt="Team Placeholder" 
-        className="w-full h-full object-cover object-top opacity-30 transition-transform duration-600 group-hover:scale-105" 
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#080e1c] via-transparent to-transparent" />
-    </div>
-    <div className="p-5">
-      <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-gold)] block mb-3">{role}</span>
-      <p className="text-xs text-white/30 italic">Details coming soon</p>
-      {/* Social row */}
-      <div className="flex items-center justify-center gap-2 mt-4">
-        {[Globe, Star, MapPin].map((Icon, i) => (
-          <a key={i} href="#" className="w-8 h-8 rounded-[5px] bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-[var(--color-gold)] hover:border-[var(--color-gold)]/30 transition-all duration-300">
-            <Icon className="w-3.5 h-3.5" />
-          </a>
-        ))}
-      </div>
-    </div>
-  </motion.div>
-);
+
 
 // ─── Main AboutPage ───────────────────────────────────────────
 const AboutPage: React.FC = () => {
@@ -101,12 +49,7 @@ const AboutPage: React.FC = () => {
     { icon: <Compass className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Personalization', desc: 'No two itineraries are identical. Every trip is crafted from scratch for you.' },
   ];
 
-  const stats = [
-    { value: 15000, suffix: '+', label: 'Happy Travellers' },
-    { value: 50, suffix: '+', label: 'Destinations' },
-    { value: 12, suffix: '+', label: 'Years Experience' },
-    { value: 4.9, suffix: '★', label: 'Avg Rating', isDecimal: true },
-  ];
+
 
   const milestones = [
     { year: '2012', event: 'Founded in Delhi with a team of 3 passionate explorers.' },
@@ -116,12 +59,7 @@ const AboutPage: React.FC = () => {
     { year: '2024', event: '15,000+ travellers and counting. Awwwards recognition.' },
   ];
 
-  const team = [
-    { name: 'Arjun Sharma', role: 'Founder & Expedition Lead', bio: '15 years exploring the Himalayas. Believes the best roads are the ones not yet on any map.', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80' },
-    { name: 'Priya Nair', role: 'Lead Guide & Naturalist', bio: 'Marine biologist turned island curator. Manages our coastal itineraries in Andaman and Kerala.', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80' },
-    { name: 'Rohan Mehra', role: 'Adventure & Logistics Head', bio: 'Ex-military mountaineer with 200+ Himalayan summits. Ensures every camp is safe and spectacular.', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80' },
-    { name: 'Kavya Reddy', role: 'Client Experience Director', bio: 'Former luxury hotelier. Crafts seamless, white-glove experiences from first inquiry to farewell.', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80' },
-  ];
+
 
   const promises = [
     { icon: <Headphones className="w-5 h-5 text-[var(--color-gold)]" />, title: '24×7 Assistance', desc: 'Support available around the clock via call, chat, or email.' },

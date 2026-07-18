@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, X, ArrowLeft, ArrowRight, MapPin, Compass } from 'lucide-react';
+import { X, ArrowLeft, ArrowRight, MapPin, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { galleryImages } from '../../data/gallery';
 import MobilePolaroidStack from './MobilePolaroidStack';
