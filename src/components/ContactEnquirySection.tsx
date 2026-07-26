@@ -238,11 +238,6 @@ const ContactEnquirySection: React.FC = () => {
 
   const handlePhoneCall = () => window.open('tel:+918279563419', '_self');
   const handleEmail = () => window.open('mailto:concierge@tripzy.travel', '_self');
-  const handleWhatsApp = () =>
-    window.open(
-      'https://wa.me/918279563419?text=Hi%20Tripzy!%20I%20want%20to%20plan%20a%20luxury%20holiday.',
-      '_blank'
-    );
 
   /* ── Helper for field style ── */
   const fieldStyle = (field: string): React.CSSProperties =>
