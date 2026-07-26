@@ -1,200 +1,409 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import {
-  Compass, Mail, Phone, MapPin, Clock
-} from 'lucide-react';
+import { Compass, MapPin, Phone, Mail, Clock } from 'lucide-react';
 
+/* ─────────────────────────────────────────────────────────
+   REAL SITE DATA — pulled from existing codebase
+───────────────────────────────────────────────────────── */
+const BRAND = 'Tripzy';
+const TAGLINE = "India's premium slow-travel experts — crafting bespoke journeys, one unhurried adventure at a time.";
+
+const COL_COMPANY = [
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Packages', to: '/packages' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Contact', to: '/contact' },
+];
+
+const COL_SUPPORT = [
+  { label: 'FAQ', to: '/faq' },
+  { label: 'Privacy Policy', to: '/privacy' },
+  { label: 'Terms & Conditions', to: '/terms' },
+  { label: 'Cancellation Policy', to: '/refund' },
+  { label: 'Help Center', to: '/help' },
+];
+
+const COL_CONTACT = [
+  { icon: <MapPin size={13} />, text: 'Will be Revealed Soon' },
+  { icon: <Phone size={13} />, text: '+91 82795 63419' },
+  { icon: <Mail size={13} />, text: 'explore@tripzy.com' },
+  { icon: <Clock size={13} />, text: 'Mon – Sat: 09:00 AM – 06:00 PM' },
+];
+
+/* Social icons — SVG paths from the original Footer.tsx */
+const COL_SOCIAL = [
+  {
+    label: 'Instagram',
+    url: 'https://instagram.com',
+    icon: (
+      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+      </svg>
+    ),
+  },
+  {
+    label: 'Facebook',
+    url: 'https://facebook.com',
+    icon: (
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    ),
+  },
+  {
+    label: 'LinkedIn',
+    url: 'https://linkedin.com',
+    icon: (
+      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+    ),
+  },
+  {
+    label: 'YouTube',
+    url: 'https://youtube.com',
+    icon: (
+      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2 29 29 0 0 0-.46 5.25 29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+      </svg>
+    ),
+  },
+];
+
+/* ─────────────────────────────────────────────────────────
+   LINK COLUMN — reusable sub-component
+───────────────────────────────────────────────────────── */
+interface LinkColProps {
+  header: string;
+  children: React.ReactNode;
+}
+const LinkCol: React.FC<LinkColProps> = ({ header, children }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+    <p
+      style={{
+        margin: '0 0 1rem',
+        fontSize: '0.9rem',
+        fontWeight: 700,
+        color: '#ffffff',
+        letterSpacing: '0.01em',
+        fontFamily: 'var(--font-body)',
+      }}
+    >
+      {header}
+    </p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+      {children}
+    </div>
+  </div>
+);
+
+/* ─────────────────────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────────────────────── */
 const Footer: React.FC = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="w-full relative border-t border-white/8 bg-gradient-to-b from-[#0a1020] via-[#080d1a] to-[#050914] overflow-hidden py-20 lg:py-24">
-      {/* Soft background glows */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[var(--color-gold)]/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[var(--color-orange)]/4 rounded-full blur-[140px] pointer-events-none" />
+    <footer
+      style={{
+        width: '100%',
+        background: 'linear-gradient(160deg, #101211 0%, #0B0D0C 100%)',
+        fontFamily: 'var(--font-body)',
+        position: 'relative',
+      }}
+    >
+      {/* Full-width inner content wrapper — no card chrome */}
+      <div
+        style={{
+          position: 'relative',
+          padding: 'clamp(3rem, 5vw, 4rem) clamp(1.25rem, 5vw, 3.5rem)',
+        }}
+      >
+        {/* Subtle ambient glows inside card */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', top: '-80px', left: '-80px',
+            width: '380px', height: '380px',
+            background: 'radial-gradient(circle, rgba(212,165,116,0.06) 0%, transparent 70%)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute', bottom: '-80px', right: '-80px',
+            width: '380px', height: '380px',
+            background: 'radial-gradient(circle, rgba(194,112,58,0.05) 0%, transparent 70%)',
+            pointerEvents: 'none',
+          }}
+        />
 
-      {/* Broad center content container */}
-      <div className="max-w-[1560px] mx-auto px-6 sm:px-12 md:px-16 relative z-10">
-        
-        {/* ── TOP SECTION: Logo & Pitch ── */}
-        <div className="pb-12 border-b border-white/6 text-left relative z-10 max-w-3xl">
-          <Link to="/" className="flex items-center gap-4 group w-fit" style={{ marginBottom: '40px' }}>
-            <Compass className="w-9 h-9 text-[var(--color-gold)] group-hover:rotate-45 transition-transform duration-500" />
-            <span 
-              style={{ fontFamily: 'var(--font-heading)' }} 
-              className="font-extrabold text-2xl sm:text-3xl tracking-widest uppercase text-white"
+        {/* ════════════════════════════════════
+            TOP SECTION: Brand block + Link columns
+        ════════════════════════════════════ */}
+        <div className="footer-top">
+
+          {/* 3a. Brand block */}
+          <div style={{ maxWidth: '300px' }}>
+            {/* Logo wordmark */}
+            <Link
+              to="/"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.6rem',
+                textDecoration: 'none',
+                marginBottom: '0.85rem',
+              }}
             >
-              Tripzy
-            </span>
-          </Link>
+              <Compass
+                size={26}
+                style={{ color: 'var(--color-gold)', flexShrink: 0 }}
+              />
+              <span
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 800,
+                  fontSize: '1.5rem',
+                  color: '#ffffff',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {BRAND}
+              </span>
+            </Link>
 
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-[40px] font-bold leading-[1.15] tracking-tight text-white mb-10"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            Let's Plan Your Next <span className="text-gold-gradient">Adventure</span> Together.
-          </h2>
-        </div>
-
-        {/* ── MIDDLE SECTION: Links & Socials ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-12 text-left">
-          
-          {/* Col 1: Contact */}
-          <div className="flex flex-col gap-8">
-            <h4
-              className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/60"
-              style={{ fontFamily: 'var(--font-body)' }}
+            {/* Tagline / description */}
+            <p
+              style={{
+                margin: 0,
+                fontSize: '0.875rem',
+                color: 'rgba(255,255,255,0.5)',
+                lineHeight: 1.65,
+                maxWidth: '280px',
+              }}
             >
-              Contact Us
-            </h4>
-            <ul className="flex flex-col gap-4 text-sm text-white/50">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-0.5 text-[var(--color-gold)] shrink-0" />
-                <span>MG Road, Heritage Chambers, Cochin, India</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[var(--color-gold)] shrink-0" />
-                <span>+91 98765 43210</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[var(--color-gold)] shrink-0" />
-                <span>explore@tripzy.com</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Clock className="w-4 h-4 text-[var(--color-gold)] shrink-0" />
-                <span>Mon – Sat: 09:00 AM – 06:00 PM</span>
-              </li>
-            </ul>
+              {TAGLINE}
+            </p>
           </div>
 
-          {/* Col 2: Company */}
-          <div className="flex flex-col gap-8">
-            <h4
-              className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/60"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Company
-            </h4>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: 'Home', to: '/' },
-                { label: 'About Us', to: '/about' },
-                { label: 'Packages', to: '/packages' },
-                { label: 'Gallery', to: '/gallery' },
-                { label: 'Contact', to: '/contact' },
-              ].map(({ label, to }) => (
-                <li key={label}>
-                  <Link
-                    to={to}
-                    className="text-sm text-white/40 hover:text-[var(--color-gold)] transition-colors duration-300 flex items-center gap-2 group w-fit"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    <span className="w-0 group-hover:w-3.5 h-px bg-[var(--color-gold)] transition-all duration-300" />
-                    {label}
-                  </Link>
-                </li>
+          {/* 3b. Four link columns */}
+          <div className="footer-cols">
+
+            {/* Column 1 — Company pages */}
+            <LinkCol header="Company">
+              {COL_COMPANY.map(({ label, to }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  className="footer-link"
+                >
+                  {label}
+                </Link>
               ))}
-            </ul>
-          </div>
+            </LinkCol>
 
-          {/* Col 3: Support */}
-          <div className="flex flex-col gap-8">
-            <h4
-              className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/60"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Support
-            </h4>
-            <ul className="flex flex-col gap-3">
-              {[
-                { label: 'FAQ', to: '/faq' },
-                { label: 'Privacy Policy', to: '/privacy' },
-                { label: 'Terms & Conditions', to: '/terms' },
-                { label: 'Cancellation Policy', to: '/refund' },
-                { label: 'Help Center', to: '/help' },
-              ].map(({ label, to }) => (
-                <li key={label}>
-                  <Link
-                    to={to}
-                    className="text-sm text-white/40 hover:text-[var(--color-gold)] transition-colors duration-300 flex items-center gap-2 group w-fit"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    <span className="w-0 group-hover:w-3.5 h-px bg-[var(--color-gold)] transition-all duration-300" />
-                    {label}
-                  </Link>
-                </li>
+            {/* Column 2 — Support / legal */}
+            <LinkCol header="Support">
+              {COL_SUPPORT.map(({ label, to }) => (
+                <Link
+                  key={label}
+                  to={to}
+                  className="footer-link"
+                >
+                  {label}
+                </Link>
               ))}
-            </ul>
-          </div>
+            </LinkCol>
 
-          {/* Col 4: Follow Us */}
-          <div className="flex flex-col gap-8">
-            <h4
-              className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/60"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Follow Us
-            </h4>
-            <div className="flex gap-3 mt-1 flex-wrap">
-              {[
-                { icon: <svg className="w-4 h-4 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>, url: 'https://instagram.com' },
-                { icon: <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>, url: 'https://facebook.com' },
-                { icon: <svg className="w-4 h-4 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>, url: 'https://linkedin.com' },
-                { icon: <svg className="w-4 h-4 fill-none stroke-current" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2a29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" /><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" /></svg>, url: 'https://youtube.com' }
-              ].map((s, idx) => (
-                <motion.a
-                  key={idx}
-                  href={s.url}
+            {/* Column 3 — Contact info */}
+            <LinkCol header="Contact Us">
+              {COL_CONTACT.map(({ icon, text }) => (
+                <span
+                  key={text}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.5rem',
+                    fontSize: '0.85rem',
+                    color: 'rgba(255,255,255,0.55)',
+                    lineHeight: 1.45,
+                  }}
+                >
+                  <span style={{ marginTop: '1px', flexShrink: 0, color: 'rgba(255,255,255,0.35)' }}>
+                    {icon}
+                  </span>
+                  {text}
+                </span>
+              ))}
+            </LinkCol>
+
+            {/* Column 4 — Social */}
+            <LinkCol header="Follow Us">
+              {COL_SOCIAL.map(({ label, url, icon }) => (
+                <a
+                  key={label}
+                  href={url}
                   target="_blank"
                   rel="noreferrer"
-                  whileHover={{ y: -4, scale: 1.08 }}
-                  className="w-10 h-10 rounded-full bg-white/4 border border-white/8 flex justify-center items-center text-white/55 hover:text-[var(--color-gold)] hover:border-[var(--color-gold)]/40 hover:shadow-[0_0_15px_rgba(212,165,116,0.2)] transition-colors duration-300"
+                  className="footer-link"
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
                 >
-                  {s.icon}
-                </motion.a>
+                  <span style={{ opacity: 0.7 }}>{icon}</span>
+                  {label}
+                </a>
               ))}
-            </div>
+            </LinkCol>
+
           </div>
         </div>
 
-        {/* ── CUSTOM SHIMMER DIVIDER ── */}
-        <div className="relative h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent my-8">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--color-gold)]/35 to-transparent w-1/3 animate-shimmer" />
-        </div>
-
-        {/* ── BOTTOM SECTION: Copyright & Legal ── */}
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10 text-xs text-white/30">
-          <p>© {new Date().getFullYear()} Tripzy. All rights reserved.</p>
-          <p className="block">
+        {/* ════════════════════════════════════
+            LEGAL ROW
+        ════════════════════════════════════ */}
+        <div
+          className="footer-legal"
+          style={{ marginTop: '3rem' }}
+        >
+          <span>© {year} {BRAND}. All rights reserved.</span>
+          <span>
             Developed by{' '}
             <a
               href="https://www.owlmediahouse.com"
               target="_blank"
               rel="noreferrer"
-              className="text-white/45 hover:text-[var(--color-gold)] hover:underline transition-all font-semibold"
+              style={{
+                color: 'rgba(255,255,255,0.6)',
+                textDecoration: 'none',
+                fontWeight: 600,
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-gold)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
             >
               OWL MEDIA HOUSE
             </a>
-          </p>
-          <div className="flex gap-5">
-            <Link to="/privacy" className="hover:text-white/60 transition-colors">Privacy</Link>
-            <span>•</span>
-            <Link to="/terms" className="hover:text-white/60 transition-colors">Terms</Link>
-            <span>•</span>
-            <Link to="/cookies" className="hover:text-white/60 transition-colors">Cookies</Link>
-          </div>
+          </span>
         </div>
-      </div>
 
-      {/* Embedded Shimmer Keyframes */}
+        {/* ════════════════════════════════════
+            GIANT WORDMARK — inside card (gets clipped at bottom by overflow:hidden)
+        ════════════════════════════════════ */}
+        <div
+          aria-hidden="true"
+          style={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            textAlign: 'center',
+            marginTop: '2.5rem',
+            /*
+             * Negative margin pulls the text down so only the
+             * top ~55-65% of letterforms are visible before the
+             * card's overflow:hidden clips the rest.
+             */
+            marginBottom: '-0.38em',
+            lineHeight: 0.85,
+            overflow: 'hidden',
+          }}
+        >
+          <span
+            style={{
+              display: 'block',
+              fontSize: 'clamp(4rem, 13vw, 9rem)',
+              fontWeight: 900,
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
+              fontFamily: 'var(--font-heading)',
+              /* Horizontal gradient: vivid mint-green left → nearly invisible right */
+              background: 'linear-gradient(90deg, #3ED598 0%, #1a8c5a 35%, #0d4d33 65%, #0B0D0C 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            {BRAND}
+          </span>
+        </div>
+
+      </div>{/* /inner content wrapper */}
+
+      {/* Scoped styles */}
       <style>{`
-        @keyframes shimmer-move {
-          0% { left: -33%; }
-          100% { left: 100%; }
+        /* ── Footer link hover ── */
+        .footer-link {
+          font-size: 0.85rem;
+          color: rgba(255,255,255,0.55);
+          text-decoration: none;
+          transition: color 0.2s ease;
+          display: block;
         }
-        .animate-shimmer {
-          animation: shimmer-move 4s infinite linear;
+        .footer-link:hover {
+          color: #ffffff;
+        }
+
+        /* ── Top section: brand + columns ── */
+        .footer-top {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+          gap: 3rem;
+        }
+
+        /* ── Four columns side-by-side ── */
+        .footer-cols {
+          display: flex;
+          flex-direction: row;
+          gap: clamp(2rem, 4vw, 4rem);
+          align-items: flex-start;
+          flex-wrap: nowrap;
+        }
+
+        /* ── Legal row ── */
+        .footer-legal {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 1rem;
+          font-size: 0.8rem;
+          color: rgba(255,255,255,0.45);
+        }
+
+        /* ── Tablet (768–1023px) ── */
+        @media (max-width: 1023px) {
+          .footer-cols { gap: 2rem; }
+        }
+
+        /* ── Mobile (<768px) ── */
+        @media (max-width: 767px) {
+          .footer-top {
+            flex-direction: column;
+            gap: 2rem;
+          }
+          .footer-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem 1.5rem;
+            width: 100%;
+          }
+          .footer-legal {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.5rem;
+          }
         }
       `}</style>
+
     </footer>
   );
 };

@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col relative">
       <Navbar />
       <main className="flex-grow">{children}</main>
       <Footer />

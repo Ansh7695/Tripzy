@@ -162,13 +162,22 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* ═══════════ 3. PREMIUM CTA BANNER ═══════════ */}
-      <section className="relative z-10 py-36 bg-slate-950 overflow-hidden" style={{ marginTop: '80px', marginBottom: '80px' }}>
-        {/* Cinematic Sunset mountains background image */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-70" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80)' }} />
+      <section
+        className="relative z-10 overflow-hidden flex items-center"
+        style={{ minHeight: '60vh' }}
+      >
+        {/* Cinematic Sunset mountains background image — full bleed */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80)',
+            opacity: 0.7,
+          }}
+        />
         <div className="absolute inset-0 bg-black/60" />
 
-        <div className="section-container relative z-10 text-left">
-          <div className="max-w-2xl py-8 md:py-12">
+        <div className="section-container relative z-10 text-left w-full">
+          <div className="max-w-2xl py-16 md:py-20">
             <span className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-[var(--color-gold)] block mb-5">
               Ready to Explore?
             </span>

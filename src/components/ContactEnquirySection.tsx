@@ -1,20 +1,74 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import {
-  MapPin, Phone, Mail, MessageSquare, Clock, ArrowRight
-} from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ArrowUpRight, Send } from 'lucide-react';
 
-interface ContactCardProps {
+/* ─────────────────────────────────────────
+   GLASS RECIPE CONSTANTS
+───────────────────────────────────────── */
+const GLASS_OUTER = {
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  backdropFilter: 'blur(16px)',
+  WebkitBackdropFilter: 'blur(16px)',
+  boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
+} as const;
+
+const GLASS_INNER = {
+  background: 'rgba(255,255,255,0.055)',
+  border: '1px solid rgba(255,255,255,0.10)',
+  backdropFilter: 'blur(16px)',
+  WebkitBackdropFilter: 'blur(16px)',
+} as const;
+
+/* ─────────────────────────────────────────
+   DECORATIVE SVG — diagonal lines + nodes
+   Rendered top-left and top-right corners
+───────────────────────────────────────── */
+const DecoLines: React.FC<{ side: 'left' | 'right' }> = ({ side }) => (
+  <svg
+    aria-hidden="true"
+    width="220"
+    height="260"
+    viewBox="0 0 220 260"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{
+      position: 'absolute',
+      top: 0,
+      [side]: 0,
+      opacity: 0.18,
+      pointerEvents: 'none',
+      zIndex: 0,
+      transform: side === 'right' ? 'scaleX(-1)' : 'none',
+    }}
+  >
+    {/* Main diagonal line */}
+    <line x1="10" y1="10" x2="160" y2="200" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+    {/* Branch line at bend ~90,115 */}
+    <line x1="90" y1="115" x2="210" y2="90" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+    {/* Branch line at bend ~130,165 */}
+    <line x1="130" y1="165" x2="30" y2="250" stroke="rgba(255,255,255,0.6)" strokeWidth="1" />
+    {/* Hollow circle nodes at bend points */}
+    <circle cx="90" cy="115" r="4" stroke="rgba(255,255,255,0.7)" strokeWidth="1" fill="none" />
+    <circle cx="130" cy="165" r="4" stroke="rgba(255,255,255,0.7)" strokeWidth="1" fill="none" />
+    <circle cx="160" cy="200" r="3" stroke="rgba(255,255,255,0.5)" strokeWidth="1" fill="none" />
+    {/* Extra faint short strokes */}
+    <line x1="40" y1="60" x2="80" y2="50" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+    <circle cx="40" cy="60" r="2.5" stroke="rgba(255,255,255,0.45)" strokeWidth="1" fill="none" />
+  </svg>
+);
+
+/* ─────────────────────────────────────────
+   INFO CARD (Email / Call / Location)
+───────────────────────────────────────── */
+interface InfoCardProps {
   icon: React.ReactNode;
-  title: string;
+  label: string;
   value: string;
-  buttonText?: string;
   onClick?: () => void;
-  badge?: string;
-  glowColor: string;
 }
 
-const ContactCard: React.FC<ContactCardProps> = ({ icon, title, value, buttonText, onClick, badge, glowColor }) => {
+const InfoCard: React.FC<InfoCardProps> = ({ icon, label, value, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -22,59 +76,130 @@ const ContactCard: React.FC<ContactCardProps> = ({ icon, title, value, buttonTex
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={onClick}
-      className={`relative w-full rounded-[24px] border border-white/8 bg-white/4 px-6 transition-all duration-300 ease-out select-none flex items-center justify-between overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.25)] h-[96px] ${onClick ? 'cursor-pointer' : ''
-        } ${hovered ? `border-[var(--color-gold)]/45 shadow-[0_20px_40px_${glowColor}] -translate-y-1` : ''}`}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => e.key === 'Enter' && onClick() : undefined}
+      style={{
+        ...GLASS_OUTER,
+        borderRadius: '16px',
+        padding: '1.25rem 1.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '1rem',
+        cursor: onClick ? 'pointer' : 'default',
+        transition: 'border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+        transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        border: hovered
+          ? '1px solid rgba(255,255,255,0.18)'
+          : '1px solid rgba(255,255,255,0.08)',
+        boxShadow: hovered
+          ? '0 8px 32px rgba(0,0,0,0.38)'
+          : '0 4px 24px rgba(0,0,0,0.25)',
+      }}
     >
-      {/* Decorative ambient glowing backdrop */}
+      {/* Icon box */}
       <div
-        className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full blur-2xl pointer-events-none transition-opacity duration-500"
         style={{
-          background: `radial-gradient(circle, ${glowColor}, transparent 70%)`,
-          opacity: hovered ? 0.35 : 0.1
+          ...GLASS_INNER,
+          borderRadius: '12px',
+          width: '48px',
+          height: '48px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          color: 'rgba(255,255,255,0.75)',
+          transition: 'background 0.2s ease',
+          background: hovered ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.055)',
         }}
-      />
-
-      <div className="relative z-10 flex gap-4 items-center h-full w-full">
-        {/* Claymorphic icon holder */}
-        <div
-          className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[var(--color-gold)] shadow-[inset_0_1.5px_0_rgba(255,255,255,0.12)] backdrop-blur-md transition-all duration-500 flex-shrink-0"
-          style={{
-            boxShadow: hovered
-              ? `0 8px 16px ${glowColor}, inset 0 1.5px 0 rgba(255,255,255,0.15)`
-              : 'inset 0 1.5px 0 rgba(255,255,255,0.12)'
-          }}
-        >
-          <span className={`transition-transform duration-500 ${hovered ? 'scale-110 rotate-6' : 'scale-100'}`}>
-            {icon}
-          </span>
-        </div>
-
-        <div className="flex-grow flex flex-col justify-center text-left">
-          <div className="flex items-center justify-between mb-0.5">
-            <span className="text-[10px] font-extrabold uppercase tracking-widest text-white/35">{title}</span>
-            {badge && (
-              <span className="text-[8px] font-extrabold uppercase tracking-wider text-[var(--color-gold)] bg-[var(--color-gold)]/10 px-2 py-0.5 rounded-md border border-[var(--color-gold)]/25">
-                {badge}
-              </span>
-            )}
-          </div>
-          <p className="text-[13px] sm:text-[14px] font-semibold text-white/90 leading-tight truncate max-w-[240px] md:max-w-xs">
-            {value}
-          </p>
-        </div>
+      >
+        {icon}
       </div>
 
-      {buttonText && (
-        <div className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full border border-white/10 bg-white/5 hover:bg-[var(--color-gold)]/20 text-[var(--color-gold)] hover:text-white transition-all ml-2 flex-shrink-0">
-          <ArrowRight className="w-4 h-4" />
+      {/* Text block */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p
+          style={{
+            margin: 0,
+            fontSize: '0.8rem',
+            fontWeight: 700,
+            color: 'rgba(255,255,255,0.95)',
+            lineHeight: 1.2,
+            letterSpacing: '0.01em',
+          }}
+        >
+          {label}
+        </p>
+        <p
+          style={{
+            margin: '0.2rem 0 0',
+            fontSize: '0.8rem',
+            color: 'rgba(255,255,255,0.5)',
+            lineHeight: 1.3,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {value}
+        </p>
+      </div>
+
+      {/* Arrow button */}
+      {onClick && (
+        <div
+          style={{
+            ...GLASS_INNER,
+            borderRadius: '50%',
+            width: '36px',
+            height: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            color: 'rgba(255,255,255,0.8)',
+            transition: 'background 0.2s ease, color 0.2s ease',
+            background: hovered ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.055)',
+          }}
+        >
+          <ArrowUpRight size={15} />
         </div>
       )}
     </div>
   );
 };
 
+/* ─────────────────────────────────────────
+   GLASS INPUT / TEXTAREA
+───────────────────────────────────────── */
+const inputBaseStyle: React.CSSProperties = {
+  width: '100%',
+  boxSizing: 'border-box',
+  padding: '0.9rem 1.1rem',
+  borderRadius: '12px',
+  background: 'rgba(255,255,255,0.055)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  backdropFilter: 'blur(16px)',
+  WebkitBackdropFilter: 'blur(16px)',
+  color: 'rgba(255,255,255,0.9)',
+  fontSize: '0.9rem',
+  outline: 'none',
+  transition: 'border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease',
+  fontFamily: 'inherit',
+};
+
+const inputFocusedStyle: React.CSSProperties = {
+  borderColor: 'rgba(255,255,255,0.22)',
+  background: 'rgba(255,255,255,0.075)',
+  boxShadow: '0 0 0 2px rgba(255,255,255,0.06)',
+};
+
+/* ─────────────────────────────────────────
+   MAIN COMPONENT
+───────────────────────────────────────── */
 const ContactEnquirySection: React.FC = () => {
-  // Form State
+  /* ── Existing form state — unchanged ── */
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -84,12 +209,13 @@ const ContactEnquirySection: React.FC = () => {
     travelMonth: '',
     budget: '',
     subject: '',
-    message: ''
+    message: '',
   });
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  /* ── Existing handlers — unchanged ── */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -105,322 +231,563 @@ const ContactEnquirySection: React.FC = () => {
         travelMonth: '',
         budget: '',
         subject: '',
-        message: ''
+        message: '',
       });
     }, 1500);
   };
 
-  const handlePhoneCall = () => {
-    window.open('tel:+918086050505', '_self');
-  };
+  const handlePhoneCall = () => window.open('tel:+918279563419', '_self');
+  const handleEmail = () => window.open('mailto:concierge@tripzy.travel', '_self');
+  const handleWhatsApp = () =>
+    window.open(
+      'https://wa.me/918279563419?text=Hi%20Tripzy!%20I%20want%20to%20plan%20a%20luxury%20holiday.',
+      '_blank'
+    );
 
-  const handleEmail = () => {
-    window.open('mailto:concierge@tripzy.travel', '_self');
-  };
-
-  const handleWhatsApp = () => {
-    window.open('https://wa.me/918086050505?text=Hi%20Tripzy!%20I%20want%20to%20plan%20a%20luxury%20holiday.', '_blank');
-  };
+  /* ── Helper for field style ── */
+  const fieldStyle = (field: string): React.CSSProperties =>
+    focusedField === field ? { ...inputBaseStyle, ...inputFocusedStyle } : { ...inputBaseStyle };
 
   return (
     <section
-      className="relative z-10 w-full px-6 sm:px-12 md:px-20 flex flex-col items-center justify-center"
-      style={{ marginTop: '120x', marginBottom: '120px', paddingTop: '0px', paddingBottom: '0px' }}
+      id="contact-enquiry"
+      style={{
+        position: 'relative',
+        width: '100%',
+        background: 'var(--color-navy)',
+        overflow: 'hidden',
+        paddingBlock: 'clamp(3rem, 8vw, 6rem)',
+      }}
     >
-      {/* Background orbs inside the layout boundary */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-[var(--color-gold)]/4  blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[var(--color-orange)]/3  blur-[160px] pointer-events-none -z-10" />
+      {/* ── Radial glow — gold tinted, top-center (matches site palette) ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '-15%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 'clamp(500px, 80vw, 900px)',
+          height: 'clamp(300px, 50vh, 550px)',
+          background:
+            'radial-gradient(ellipse at 50% 0%, rgba(212,165,116,0.08) 0%, rgba(212,165,116,0.03) 45%, transparent 75%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
+      {/* ── Secondary side glow — sky/slate, bottom-right (matches site) ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '-10%',
+          right: '-10%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(56,189,248,0.04) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
 
-      {/* Outer Single Large Glassmorphism Card */}
-      <div className="max-w-[1400px] w-full mx-auto p-24 bg-gradient-to-b from-[#11192d]/70 via-[#0a101f]/80 to-[#050913]/90 border border-white/8 p-8 md:p-16 lg:p-20 relative overflow-hidden backdrop-blur-3xl shadow-[0_24px_60px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.06)]">
+      {/* ── Decorative diagonal SVG lines (corners) ── */}
+      <DecoLines side="left" />
+      <DecoLines side="right" />
 
-        {/* Grain Overlay */}
-        <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+      {/* ── Watermark "CONTACT" — hidden on mobile ── */}
+      <div
+        aria-hidden="true"
+        className="contact-watermark"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          fontSize: 'clamp(4rem, 12vw, 9rem)',
+          fontWeight: 900,
+          letterSpacing: '0.12em',
+          color: 'rgba(255,255,255,0.055)',
+          whiteSpace: 'nowrap',
+          pointerEvents: 'none',
+          userSelect: 'none',
+          zIndex: 0,
+          lineHeight: 1,
+        }}
+      >
+        CONTACT
+      </div>
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-
-          {/* ═══════════ LEFT SIDE: CONTACT DETAILS (40% Split) ═══════════ */}
-          <div className="lg:col-span-5 flex flex-col justify-between text-left items-start w-full">
-            <div>
-              <span className="text-[9px] font-extrabold uppercase tracking-[0.3em] text-[var(--color-gold)] border border-[var(--color-gold)]/25 bg-[var(--color-gold)]/8 rounded-[4px] px-4 py-2 mb-6 inline-block">
-                Tripzy Lounge
-              </span>
-
-              <h2
-                className="text-4xl sm:text-5xl lg:text-[54px] font-bold leading-[1.1] text-white tracking-tight"
-                style={{ fontFamily: 'var(--font-heading)', marginBottom: '28px' }}
-              >
-                Let's Plan Your <span className="text-gold-gradient">Next Adventure</span> Together
-              </h2>
-
-              <p
-                className="text-white/50 text-[18px] leading-relaxed max-w-[480px]"
-                style={{ fontFamily: 'var(--font-body)', color: 'rgba(255,255,255,0.45)', marginBottom: '48px' }}
-              >
-                Connect directly with our luxury travel coordinators. Sit down with an expert over chat, call, or email to frame your bespoke slow-travel itinerary.
-              </p>
-            </div>
-
-            {/* Contact Methods Cards Grid */}
-            <div className="flex flex-col gap-6 w-full">
-              <ContactCard
-                icon={<MapPin className="w-5 h-5" />}
-                title="Office"
-                value="India"
-                badge="HQ"
-                glowColor="rgba(212, 165, 116, 0.15)"
-              />
-              <ContactCard
-                icon={<Phone className="w-5 h-5" />}
-                title="Call Us"
-                value="+91 xxxxx xxxxx"
-                buttonText="Call Now"
-                onClick={handlePhoneCall}
-                glowColor="rgba(245, 158, 11, 0.15)"
-              />
-              <ContactCard
-                icon={<Mail className="w-5 h-5" />}
-                title="Email Us"
-                value="xxxxx@tripzy.travel"
-                buttonText="Email Us"
-                onClick={handleEmail}
-                glowColor="rgba(20, 184, 166, 0.15)"
-              />
-              <ContactCard
-                icon={<MessageSquare className="w-5 h-5" />}
-                title="WhatsApp Direct"
-                value="Instant Support Coordinator"
-                buttonText="Chat on WhatsApp"
-                onClick={handleWhatsApp}
-                badge="Active"
-                glowColor="rgba(34, 197, 94, 0.12)"
-              />
-              <ContactCard
-                icon={<Clock className="w-5 h-5" />}
-                title="Business Hours"
-                value="Monday – Saturday (10:00 AM – 7:00 PM)"
-                glowColor="rgba(255, 255, 255, 0.10)"
-              />
-            </div>
+      {/* ── Main centered container ── */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          maxWidth: '1200px',
+          margin: '0 auto',
+          paddingInline: 'clamp(1.25rem, 4vw, 2rem)',
+        }}
+      >
+        {/* ───── SECTION HEADING BLOCK ───── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '3rem', textAlign: 'left' }}
+        >
+          {/* Eyebrow badge pill */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              ...GLASS_OUTER,
+              borderRadius: '999px',
+              padding: '0.4rem 1rem',
+              marginBottom: '1rem',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.75)',
+              letterSpacing: '0.04em',
+            }}
+          >
+            <Mail size={13} style={{ color: 'rgba(255,255,255,0.6)' }} />
+            Contact
           </div>
 
-          {/* ═══════════ RIGHT SIDE: ENQUIRY FORM PANEL (60% Split) ═══════════ */}
-          <div className="lg:col-span-7 w-full flex flex-col justify-between">
+          {/* Heading */}
+          <h2
+            style={{
+              margin: '0 0 0.75rem',
+              fontSize: 'clamp(2rem, 4vw, 2.75rem)',
+              fontWeight: 800,
+              color: '#ffffff',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              fontFamily: 'var(--font-heading)',
+            }}
+          >
+            Get in touch
+          </h2>
 
-            <div className="text-left mb-8">
-              <h3
-                className="text-[38px] font-bold text-white mb-2 tracking-tight leading-none"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Send Us An Enquiry
-              </h3>
-              <p className="text-sm text-white/45" style={{ fontFamily: 'var(--font-body)' }}>
-                Share your travel preferences and our coordinators will frame aSlow Travel layout for you.
-              </p>
-            </div>
+          {/* Subtext */}
+          <p
+            style={{
+              margin: 0,
+              fontSize: '0.95rem',
+              color: 'rgba(255,255,255,0.55)',
+              maxWidth: '30ch',
+              lineHeight: 1.6,
+              fontFamily: 'var(--font-body)',
+            }}
+          >
+            Our team is ready to craft your perfect slow-travel itinerary.
+          </p>
+        </motion.div>
 
+        {/* ───── TWO-COLUMN GRID ───── */}
+        <div className="contact-grid">
+          {/* ══════ LEFT: Info cards ══════ */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          >
+            <InfoCard
+              icon={<Mail size={20} />}
+              label="Email us"
+              value="concierge@tripzy.travel"
+              onClick={handleEmail}
+            />
+            <InfoCard
+              icon={<Phone size={20} />}
+              label="Call us"
+              value="+91 80860 50505"
+              onClick={handlePhoneCall}
+            />
+            <InfoCard
+              icon={<MapPin size={20} />}
+              label="Our location"
+              value="Fort Kochi, Kerala, India"
+              onClick={() =>
+                window.open(
+                  'https://www.google.com/maps/search/Fort+Kochi+Kerala',
+                  '_blank'
+                )
+              }
+            />
+            <InfoCard
+              icon={<Clock size={20} />}
+              label="Business hours"
+              value="Mon – Sat, 10:00 AM – 7:00 PM"
+            />
+          </motion.div>
+
+          {/* ══════ RIGHT: Form card ══════ */}
+          <motion.div
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.18 }}
+            style={{
+              ...GLASS_OUTER,
+              borderRadius: '20px',
+              padding: '1.75rem',
+            }}
+          >
             {submitted ? (
+              /* ── Success state ── */
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center text-center py-20 text-white flex-grow"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  padding: '3rem 1rem',
+                  gap: '1rem',
+                }}
               >
-                <div className="w-16 h-16 rounded-full bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/30 flex items-center justify-center mb-6">
-                  <Clock className="w-8 h-8 text-[var(--color-gold)] animate-pulse" />
+                <div
+                  style={{
+                    ...GLASS_INNER,
+                    borderRadius: '50%',
+                    width: '64px',
+                    height: '64px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'rgba(255,255,255,0.8)',
+                  }}
+                >
+                  <Send size={28} />
                 </div>
-                <h4 className="text-2xl font-bold mb-2">Enquiry Received!</h4>
-                <p className="text-base text-white/50 max-w-sm mb-8 leading-relaxed">
-                  Your luxury holiday preferences have been successfully transmitted. Our private travel concierge will reach out within 3 hours.
+                <h4
+                  style={{
+                    margin: 0,
+                    fontSize: '1.3rem',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    fontFamily: 'var(--font-heading)',
+                  }}
+                >
+                  Enquiry Received!
+                </h4>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: '0.875rem',
+                    color: 'rgba(255,255,255,0.5)',
+                    maxWidth: '26ch',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Your luxury holiday preferences have been submitted. Our concierge will reach out within 3 hours.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="btn-outline px-8 py-3 text-xs rounded-full uppercase font-bold tracking-widest"
+                  style={{
+                    marginTop: '0.5rem',
+                    padding: '0.7rem 1.75rem',
+                    borderRadius: '999px',
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(255,255,255,0.14)',
+                    color: 'rgba(255,255,255,0.85)',
+                    fontSize: '0.78rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    transition: 'background 0.2s',
+                    fontFamily: 'var(--font-body)',
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.target as HTMLButtonElement).style.background = 'rgba(255,255,255,0.13)')
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.target as HTMLButtonElement).style.background = 'rgba(255,255,255,0.08)')
+                  }
                 >
                   Send Another Enquiry
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-left w-full">
-
-                {/* Full Name */}
-                <div className="relative w-full">
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    onFocus={() => setFocusedField('name')}
-                    onBlur={() => setFocusedField(null)}
-                    className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'name'
-                      ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                      : ''
-                      }`}
-                    placeholder="Full Name"
-                  />
+              /* ── Enquiry Form ── */
+              <form
+                onSubmit={handleSubmit}
+                style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+              >
+                {/* Form heading */}
+                <div style={{ marginBottom: '0.25rem' }}>
+                  <h3
+                    style={{
+                      margin: 0,
+                      fontSize: '1.15rem',
+                      fontWeight: 700,
+                      color: '#ffffff',
+                      fontFamily: 'var(--font-heading)',
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    Send an Enquiry
+                  </h3>
+                  <p
+                    style={{
+                      margin: '0.3rem 0 0',
+                      fontSize: '0.8rem',
+                      color: 'rgba(255,255,255,0.45)',
+                      fontFamily: 'var(--font-body)',
+                    }}
+                  >
+                    Share your travel preferences and we'll frame a personalised itinerary.
+                  </p>
                 </div>
 
+                {/* Full Name */}
+                <input
+                  type="text"
+                  required
+                  id="contact-name"
+                  name="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onFocus={() => setFocusedField('name')}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder="Full Name"
+                  style={fieldStyle('name')}
+                />
+
                 {/* Email & Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-                  <div className="relative">
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      onFocus={() => setFocusedField('email')}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'email'
-                        ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                        : ''
-                        }`}
-                      placeholder="Email Address"
-                    />
-                  </div>
-                  <div className="relative">
-                    <input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      onFocus={() => setFocusedField('phone')}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'phone'
-                        ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                        : ''
-                        }`}
-                      placeholder="Phone Number"
-                    />
-                  </div>
+                <div className="contact-form-row">
+                  <input
+                    type="email"
+                    required
+                    id="contact-email"
+                    name="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onFocus={() => setFocusedField('email')}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Email Address"
+                    style={fieldStyle('email')}
+                  />
+                  <input
+                    type="tel"
+                    required
+                    id="contact-phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onFocus={() => setFocusedField('phone')}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Phone Number"
+                    style={fieldStyle('phone')}
+                  />
                 </div>
 
                 {/* Destination & Travellers */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      required
-                      value={formData.destination}
-                      onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                      onFocus={() => setFocusedField('destination')}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'destination'
-                        ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                        : ''
-                        }`}
-                      placeholder="Destination Interested In"
-                    />
-                  </div>
-                  <div className="relative">
-                    <input
-                      type="number"
-                      required
-                      min="1"
-                      value={formData.travellers}
-                      onChange={(e) => setFormData({ ...formData, travellers: e.target.value })}
-                      onFocus={() => setFocusedField('travellers')}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'travellers'
-                        ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                        : ''
-                        }`}
-                      placeholder="Number of Travellers"
-                    />
-                  </div>
-                </div>
-
-                {/* Travel Month & Budget */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      required
-                      value={formData.travelMonth}
-                      onChange={(e) => setFormData({ ...formData, travelMonth: e.target.value })}
-                      onFocus={() => setFocusedField('travelMonth')}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'travelMonth'
-                        ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                        : ''
-                        }`}
-                      placeholder="Preferred Travel Month (e.g. October)"
-                    />
-                  </div>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      required
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      onFocus={() => setFocusedField('budget')}
-                      onBlur={() => setFocusedField(null)}
-                      className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'budget'
-                        ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                        : ''
-                        }`}
-                      placeholder="Budget Range (e.g. 50k-80k)"
-                    />
-                  </div>
-                </div>
-
-                {/* Subject */}
-                <div className="relative w-full">
+                <div className="contact-form-row">
                   <input
                     type="text"
                     required
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    onFocus={() => setFocusedField('subject')}
+                    id="contact-destination"
+                    name="destination"
+                    value={formData.destination}
+                    onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
+                    onFocus={() => setFocusedField('destination')}
                     onBlur={() => setFocusedField(null)}
-                    className={`w-full px-6 py-5 rounded-full bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] ${focusedField === 'subject'
-                      ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                      : ''
-                      }`}
-                    placeholder="Subject"
+                    placeholder="Destination Interested In"
+                    style={fieldStyle('destination')}
+                  />
+                  <input
+                    type="number"
+                    required
+                    min="1"
+                    id="contact-travellers"
+                    name="travellers"
+                    value={formData.travellers}
+                    onChange={(e) => setFormData({ ...formData, travellers: e.target.value })}
+                    onFocus={() => setFocusedField('travellers')}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="No. of Travellers"
+                    style={fieldStyle('travellers')}
                   />
                 </div>
+
+                {/* Travel Month & Budget */}
+                <div className="contact-form-row">
+                  <input
+                    type="text"
+                    required
+                    id="contact-travelMonth"
+                    name="travelMonth"
+                    value={formData.travelMonth}
+                    onChange={(e) => setFormData({ ...formData, travelMonth: e.target.value })}
+                    onFocus={() => setFocusedField('travelMonth')}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Preferred Month (e.g. October)"
+                    style={fieldStyle('travelMonth')}
+                  />
+                  <input
+                    type="text"
+                    required
+                    id="contact-budget"
+                    name="budget"
+                    value={formData.budget}
+                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                    onFocus={() => setFocusedField('budget')}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Budget Range (e.g. 50k–80k)"
+                    style={fieldStyle('budget')}
+                  />
+                </div>
+
+                {/* Subject */}
+                <input
+                  type="text"
+                  required
+                  id="contact-subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  onFocus={() => setFocusedField('subject')}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder="Subject"
+                  style={fieldStyle('subject')}
+                />
 
                 {/* Message */}
-                <div className="relative w-full">
-                  <textarea
-                    required
-                    rows={6}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    onFocus={() => setFocusedField('message')}
-                    onBlur={() => setFocusedField(null)}
-                    className={`w-full px-6 py-5 rounded-[24px] bg-white/4 border border-white/10 text-base text-white/90 outline-none transition-all duration-300 shadow-[inset_0_1.5px_3px_rgba(0,0,0,0.3)] resize-none h-[220px] ${focusedField === 'message'
-                      ? 'border-[var(--color-orange)] ring-1 ring-[var(--color-orange)]/35 bg-white/6 shadow-[0_0_20px_rgba(194,112,58,0.18)]'
-                      : ''
-                      }`}
-                    placeholder="Message / Special Requirements"
-                  />
-                </div>
+                <textarea
+                  required
+                  id="contact-message"
+                  name="message"
+                  rows={6}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onFocus={() => setFocusedField('message')}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder="Message / Special Requirements"
+                  style={{
+                    ...fieldStyle('message'),
+                    minHeight: '180px',
+                    resize: 'none',
+                    borderRadius: '12px',
+                  }}
+                />
 
-                {/* Large Pill Submit Button */}
-                <div className="mt-4">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full h-16 rounded-full btn-outline flex items-center justify-center gap-2 text-[16px] font-extrabold uppercase tracking-widest bg-gradient-to-r from-[var(--color-orange)] to-[var(--color-gold)] border border-[var(--color-gold)]/40 hover:shadow-[0_12px_24px_rgba(194,112,58,0.35)] transition-all select-none active:scale-98 text-white relative group"
-                  >
-                    {isSubmitting ? (
-                      <span>TRANSMITTING ENQUIRY...</span>
-                    ) : (
-                      <>
-                        <span>Send Enquiry</span>
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
-                      </>
-                    )}
-                  </button>
-                </div>
-
+                {/* Submit — solid white, high contrast */}
+                <button
+                  type="submit"
+                  id="contact-submit"
+                  disabled={isSubmitting}
+                  style={{
+                    marginTop: '0.25rem',
+                    width: '100%',
+                    padding: '0.9rem',
+                    borderRadius: '12px',
+                    background: isSubmitting ? 'rgba(255,255,255,0.75)' : '#ffffff',
+                    border: 'none',
+                    color: '#0A0D0C',
+                    fontSize: '0.9rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.02em',
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                    transition: 'opacity 0.2s ease, transform 0.15s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    fontFamily: 'var(--font-body)',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSubmitting)
+                      (e.currentTarget as HTMLButtonElement).style.opacity = '0.88';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.opacity = '1';
+                  }}
+                >
+                  {isSubmitting ? (
+                    'Transmitting enquiry…'
+                  ) : (
+                    <>
+                      Send Enquiry
+                      <Send size={16} />
+                    </>
+                  )}
+                </button>
               </form>
             )}
-
-          </div>
-
+          </motion.div>
         </div>
       </div>
+
+      {/* ── Scoped responsive styles ── */}
+      <style>{`
+        /* Watermark hidden on mobile */
+        @media (max-width: 767px) {
+          .contact-watermark { display: none !important; }
+        }
+
+        /* Two-column grid */
+        .contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          gap: 3rem;
+          align-items: start;
+        }
+
+        /* Tablet: keep two-col, tighten gap */
+        @media (max-width: 1023px) {
+          .contact-grid {
+            gap: 2rem;
+          }
+        }
+
+        /* Mobile: single column stack */
+        @media (max-width: 767px) {
+          .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+        }
+
+        /* Form two-col row — collapses on mobile */
+        .contact-form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+        }
+
+        @media (max-width: 540px) {
+          .contact-form-row {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        /* Placeholder color */
+        #contact-name::placeholder,
+        #contact-email::placeholder,
+        #contact-phone::placeholder,
+        #contact-destination::placeholder,
+        #contact-travellers::placeholder,
+        #contact-travelMonth::placeholder,
+        #contact-budget::placeholder,
+        #contact-subject::placeholder,
+        #contact-message::placeholder {
+          color: rgba(255,255,255,0.38);
+        }
+
+        /* Number input spinner reset */
+        #contact-travellers::-webkit-inner-spin-button,
+        #contact-travellers::-webkit-outer-spin-button {
+          opacity: 0.4;
+        }
+      `}</style>
     </section>
   );
 };
