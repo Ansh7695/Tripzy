@@ -213,7 +213,7 @@ const AboutPage: React.FC = () => {
               {[
                 { img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=400&q=80', tall: true },
                 { img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=80', tall: false },
-                { img: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=400&q=80', tall: false },
+                { img: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=400&q=80', tall: false },
                 { img: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=400&q=80', tall: true },
               ].map((item, i) => (
                 <motion.div

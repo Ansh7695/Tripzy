@@ -25,8 +25,9 @@ const COL_SUPPORT = [
 ];
 
 const COL_CONTACT = [
-  { icon: <MapPin size={13} />, text: 'Will be Revealed Soon' },
-  { icon: <Phone size={13} />, text: '+91 82795 63419' },
+  { icon: <MapPin size={13} />, text: 'Kochi: 28/1859, Civil Line Rd, opp. City Silk, Sonia Nagar, Palarivattom, Kochi, Ernakulam, Kerala 682025' },
+  { icon: <MapPin size={13} />, text: 'Haridwar: 42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401' },
+  { icon: <Phone size={13} />, text: '+91 75005 98759' },
   { icon: <Mail size={13} />, text: 'explore@tripzy.com' },
   { icon: <Clock size={13} />, text: 'Mon – Sat: 09:00 AM – 06:00 PM' },
 ];
@@ -275,22 +276,7 @@ const Footer: React.FC = () => {
         >
           <span>© {year} {BRAND}. All rights reserved.</span>
           <span>
-            Developed by{' '}
-            <a
-              href="https://www.owlmediahouse.com"
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                color: 'rgba(255,255,255,0.6)',
-                textDecoration: 'none',
-                fontWeight: 600,
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-gold)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
-            >
-              OWL MEDIA HOUSE
-            </a>
+            Developed by Ansh Sharma
           </span>
         </div>
 

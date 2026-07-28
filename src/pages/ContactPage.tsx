@@ -91,7 +91,7 @@ const ContactPage: React.FC = () => {
               Plan My Journey
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <a href="tel:+91XXXXXXXXXX" className="btn-ghost px-8 py-3.5 text-[11px]">
+            <a href="tel:+917500598759" className="btn-ghost px-8 py-3.5 text-[11px]">
               Call an Expert
             </a>
           </motion.div>
@@ -123,14 +123,14 @@ const ContactPage: React.FC = () => {
               
               <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-slate-900/80 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-md">
                 <Globe className="w-4 h-4 text-[var(--color-gold)]" />
-                <span className="text-[10px] text-white font-bold uppercase tracking-wider">Heritage office, Cochin</span>
+                <span className="text-[10px] text-white font-bold uppercase tracking-wider">Kochi & Haridwar Offices</span>
               </div>
             </motion.div>
 
             {/* Right Column: Editorial metadata details */}
             <div className="text-left flex flex-col justify-center h-full">
               <span className="text-[9px] uppercase tracking-[0.3em] font-extrabold text-[var(--color-gold)] block mb-5">
-                Our Office
+                Our Offices
               </span>
               <h2 
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
@@ -139,20 +139,32 @@ const ContactPage: React.FC = () => {
                 Where Every <span className="text-gold-gradient">Journey Begins</span>
               </h2>
               
-              <p className="text-white/45 text-sm sm:text-base leading-relaxed mb-8">
-                Nestled inside a renovated Portuguese spice warehouse in Fort Kochi, our headquarters serves as a collaborative lounge for Slow Travel advocates. Visit us to sit down over locally brewed cardamom tea and look at physical charts, route profiles, and expedition journals.
+              <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-6">
+                Visit our regional offices or connect with our slow-travel concierges to plan your next bespoke adventure.
               </p>
+
+              <div className="flex flex-col gap-5 mb-8">
+                <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
+                  <h4 className="text-xs uppercase tracking-wider font-bold text-[var(--color-gold)] mb-1">Kochi Office</h4>
+                  <p className="text-sm text-white/90">28/1859, Civil Line Rd, opp. City Silk, Sonia Nagar, Palarivattom, Kochi, Ernakulam, Kerala 682025</p>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
+                  <h4 className="text-xs uppercase tracking-wider font-bold text-[var(--color-gold)] mb-1">Haridwar Office</h4>
+                  <p className="text-sm text-white/90">42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401</p>
+                </div>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-white/5">
                 <div>
                   <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Consultation hours</h4>
-                  <p className="text-sm font-semibold text-white">Mon to Sat: 10:00 AM - 5:30 PM</p>
+                  <p className="text-sm font-semibold text-white">Mon to Sat: 09:00 AM - 06:00 PM</p>
                   <p className="text-xs text-white/45 mt-0.5">Walk-ins welcome, appointments preferred</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Languages Spoken</h4>
-                  <p className="text-sm font-semibold text-white">English, Hindi, Malayalam, Tamil</p>
-                  <p className="text-xs text-white/45 mt-0.5">Interpretation available on demand</p>
+                  <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Contact & WhatsApp</h4>
+                  <p className="text-sm font-semibold text-white">+91 75005 98759</p>
+                  <p className="text-xs text-white/45 mt-0.5">24/7 Traveller assistance</p>
                 </div>
               </div>
             </div>
@@ -192,12 +204,12 @@ const ContactPage: React.FC = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link to="/packages" className="btn-outline px-6 py-3 text-[10px]">
-                Browse Packages
-              </Link>
-              <Link to="/packages" className="btn-ghost px-6 py-3 text-[10px]">
-                Start Planning
-              </Link>
+              <a href="https://wa.me/917500598759?text=Hi%20Tripzy%2C%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package" target="_blank" rel="noreferrer" className="btn-outline px-6 py-3 text-[10px]">
+                Inquiry Now
+              </a>
+              <a href="tel:+917500598759" className="btn-ghost px-6 py-3 text-[10px]">
+                Call an Expert
+              </a>
             </div>
           </div>
         </div>

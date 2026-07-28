@@ -56,7 +56,7 @@ export const galleryImages: GalleryImage[] = [
   },
   {
     id: 6,
-    url: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=800&q=80',
+    url: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
     title: 'Ganga Aarti Dawn',
     country: 'Varanasi, India',
     category: 'Spiritual',

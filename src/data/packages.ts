@@ -98,8 +98,8 @@ export const packages: Package[] = [
     category: 'Spiritual',
     desc: 'Witness Ganga Aarti from a private boat, explore winding historic alleys, and discover ancient temples at dawn.',
     highlights: ['Ganga Aarti', 'Private Boat', 'Temple Tour', 'Sunrise Walk'],
-    image: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=800&q=80',
-    bgImage: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=1920&q=80',
   },
   {
     id: 6,

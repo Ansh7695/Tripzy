@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowRight, Compass } from 'lucide-react';
 
 const ContactCTA: React.FC = () => {
@@ -60,23 +59,23 @@ const ContactCTA: React.FC = () => {
 
           {/* Buttons row */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mt-2">
-            <Link to="/contact" className="sm:w-auto">
+            <a href="https://wa.me/917500598759?text=Hi%20Tripzy%2C%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package" target="_blank" rel="noreferrer" className="sm:w-auto">
               <button
                 className="btn px-7 py-3.5 sm:px-10 sm:py-5 text-center text-sm sm:text-base"
                 style={{ fontFamily: 'var(--font-body)', minWidth: '150px' }}
               >
-                Plan My Journey
+                Inquiry Now
                 <ArrowRight className="w-5 h-5" />
               </button>
-            </Link>
-            <Link to="/contact" className="sm:w-auto">
+            </a>
+            <a href="tel:+917500598759" className="sm:w-auto">
               <button
                 className="btn-outline px-7 py-3.5 sm:px-10 sm:py-5 text-center text-sm sm:text-base"
                 style={{ fontFamily: 'var(--font-body)', minWidth: '150px' }}
               >
-                Inquire Now
+                Call an Expert
               </button>
-            </Link>
+            </a>
           </div>
         </motion.div>
       </div>

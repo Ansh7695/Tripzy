@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, ArrowUpRight, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ArrowUpRight, Send, MessageCircle } from 'lucide-react';
 
 /* ─────────────────────────────────────────
    GLASS RECIPE CONSTANTS
@@ -236,7 +236,8 @@ const ContactEnquirySection: React.FC = () => {
     }, 1500);
   };
 
-  const handlePhoneCall = () => window.open('tel:+918279563419', '_self');
+  const handlePhoneCall = () => window.open('tel:+917500598759', '_self');
+  const handleWhatsApp = () => window.open('https://wa.me/917500598759?text=Hi%20Tripzy%2C%20I%20would%20like%20to%20connect%20with%20you%20on%20WhatsApp', '_blank');
   const handleEmail = () => window.open('mailto:concierge@tripzy.travel', '_self');
 
   /* ── Helper for field style ── */
@@ -391,24 +392,41 @@ const ContactEnquirySection: React.FC = () => {
             style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
           >
             <InfoCard
+              icon={<MessageCircle size={20} />}
+              label="Connect on WhatsApp"
+              value="+91 75005 98759"
+              onClick={handleWhatsApp}
+            />
+            <InfoCard
+              icon={<Phone size={20} />}
+              label="Call us"
+              value="+91 75005 98759"
+              onClick={handlePhoneCall}
+            />
+            <InfoCard
               icon={<Mail size={20} />}
               label="Email us"
               value="concierge@tripzy.travel"
               onClick={handleEmail}
             />
             <InfoCard
-              icon={<Phone size={20} />}
-              label="Call us"
-              value="+91 80860 50505"
-              onClick={handlePhoneCall}
+              icon={<MapPin size={20} />}
+              label="Kochi Office"
+              value="28/1859, Civil Line Rd, Palarivattom, Kochi, Kerala 682025"
+              onClick={() =>
+                window.open(
+                  'https://www.google.com/maps/search/28%2F1859,+Civil+Line+Rd,+Palarivattom,+Kochi,+Kerala+682025',
+                  '_blank'
+                )
+              }
             />
             <InfoCard
               icon={<MapPin size={20} />}
-              label="Our location"
-              value="Fort Kochi, Kerala, India"
+              label="Haridwar Office"
+              value="42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401"
               onClick={() =>
                 window.open(
-                  'https://www.google.com/maps/search/Fort+Kochi+Kerala',
+                  'https://www.google.com/maps/search/42%2F89+Kankhal+Rd,+Devpura,+Haridwar,+Uttarakhand+249401',
                   '_blank'
                 )
               }
@@ -416,7 +434,7 @@ const ContactEnquirySection: React.FC = () => {
             <InfoCard
               icon={<Clock size={20} />}
               label="Business hours"
-              value="Mon – Sat, 10:00 AM – 7:00 PM"
+              value="Mon – Sat, 09:00 AM – 06:00 PM"
             />
           </motion.div>
 

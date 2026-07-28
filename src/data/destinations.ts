@@ -28,7 +28,7 @@ export const destinations: Destination[] = [
     rating: 4.9,
     badge: 'Bestseller',
     badgeIcon: '⭐',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
     bgImage: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1920&q=80',
     accentColor: 'from-[#6366f1] to-[#4f46e5]'
   },
@@ -76,8 +76,8 @@ export const destinations: Destination[] = [
     rating: 4.8,
     badge: 'Heritage',
     badgeIcon: '🏰',
-    image: 'https://images.unsplash.com/photo-1477587458883-47145ed6a318?auto=format&fit=crop&w=600&q=80',
-    bgImage: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1920&q=80',
+    image: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=800&q=80',
+    bgImage: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=1920&q=80',
     accentColor: 'from-[#eab308] to-[#ca8a04]'
   },
   {
@@ -204,7 +204,7 @@ export const destinations: Destination[] = [
     rating: 4.8,
     badge: 'Spiritual',
     badgeIcon: '🕯️',
-    image: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
     bgImage: 'https://images.unsplash.com/photo-1504893524553-ac55fce69cbf?auto=format&fit=crop&w=1920&q=80',
     accentColor: 'from-[#f97316] to-[#c2763a]'
   },

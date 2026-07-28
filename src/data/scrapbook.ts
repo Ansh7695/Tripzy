@@ -20,7 +20,7 @@ export const scrapbookPhotos: ScrapbookPhoto[] = [
   },
   {
     id: 2,
-    url: 'https://images.unsplash.com/photo-1561361531-99e224be4c2a?auto=format&fit=crop&w=800&q=80',
+    url: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
     caption: 'Varanasi Ghats at Dawn',
     destination: 'Varanasi, India',
     rotate: '2.5deg',
