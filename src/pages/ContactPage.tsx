@@ -155,16 +155,21 @@ const ContactPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-white/5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/5">
                 <div>
                   <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Consultation hours</h4>
                   <p className="text-sm font-semibold text-white">Mon to Sat: 09:00 AM - 06:00 PM</p>
-                  <p className="text-xs text-white/45 mt-0.5">Walk-ins welcome, appointments preferred</p>
+                  <p className="text-xs text-white/45 mt-0.5">Walk-ins welcome</p>
                 </div>
                 <div>
-                  <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Contact & WhatsApp</h4>
+                  <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Phone & WhatsApp</h4>
                   <p className="text-sm font-semibold text-white">+91 75005 98759</p>
                   <p className="text-xs text-white/45 mt-0.5">24/7 Traveller assistance</p>
+                </div>
+                <div>
+                  <h4 className="text-[10px] text-white/35 uppercase tracking-wider font-bold mb-2">Email Support</h4>
+                  <p className="text-xs font-semibold text-[var(--color-gold)]">contact@flyandgo.in</p>
+                  <p className="text-xs text-white/60 mt-0.5">bookings@flyandgo.in</p>
                 </div>
               </div>
             </div>

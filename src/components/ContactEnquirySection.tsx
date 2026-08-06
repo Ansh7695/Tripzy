@@ -238,7 +238,7 @@ const ContactEnquirySection: React.FC = () => {
 
   const handlePhoneCall = () => window.open('tel:+917500598759', '_self');
   const handleWhatsApp = () => window.open('https://wa.me/917500598759?text=Hi%20FlyandGO%2C%20I%20would%20like%20to%20connect%20with%20you%20on%20WhatsApp', '_blank');
-  const handleEmail = () => window.open('mailto:concierge@flyandgo.com', '_self');
+  const handleEmail = () => window.open('mailto:contact@flyandgo.in', '_self');
 
   /* ── Helper for field style ── */
   const fieldStyle = (field: string): React.CSSProperties =>
@@ -412,7 +412,7 @@ const ContactEnquirySection: React.FC = () => {
             <InfoCard
               icon={<Mail size={20} />}
               label="Email us"
-              value="concierge@flyandgo.com"
+              value="contact@flyandgo.in"
               onClick={handleEmail}
             />
             <InfoCard

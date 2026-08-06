@@ -62,7 +62,7 @@ const AboutPage: React.FC = () => {
 
 
   const promises = [
-    { icon: <Headphones className="w-5 h-5 text-[var(--color-gold)]" />, title: '24×7 Assistance', desc: 'Support available around the clock via call, chat, or email.' },
+    { icon: <Headphones className="w-5 h-5 text-[var(--color-gold)]" />, title: '24×7 Assistance', desc: 'Support available around the clock via call, chat, or email (contact@flyandgo.in).' },
     { icon: <CheckCircle className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Verified Experiences', desc: 'Every listing inspected by our team before offering to clients.' },
     { icon: <ShieldCheck className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Secure Booking', desc: 'SSL-secured payments with full refund transparency.' },
     { icon: <Zap className="w-5 h-5 text-[var(--color-gold)]" />, title: 'Personalised Support', desc: 'A dedicated travel expert assigned to every booking.' },
