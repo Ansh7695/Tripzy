@@ -309,7 +309,7 @@ const AboutPage: React.FC = () => {
             <div className="flex flex-col lg:h-[500px] lg:justify-between w-full">
               <div className="space-y-4" style={{ marginBottom: '25px' }}>
                 {[
-                  'Born from a deep love for the Indian subcontinent, Tripzy started as a small passion project among three friends who believed that slow travel was the future.',
+                  'Born from a deep love for the Indian subcontinent, FlyandGO started as a small passion project among three friends who believed that slow travel was the future.',
                   'We hand-scout every route, sleep in every hotel, and eat at every restaurant before it makes it to an itinerary. Our word is our promise.',
                   'Today, with over 15,000 travellers and 50+ destinations, we remain as passionate and detail-obsessed as we were on day one.'
                 ].map((text, i) => (

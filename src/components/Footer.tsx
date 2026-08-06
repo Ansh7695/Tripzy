@@ -5,7 +5,7 @@ import { Compass, MapPin, Phone, Mail, Clock } from 'lucide-react';
 /* ─────────────────────────────────────────────────────────
    REAL SITE DATA — pulled from existing codebase
 ───────────────────────────────────────────────────────── */
-const BRAND = 'Tripzy';
+const BRAND = 'FlyandGO';
 const TAGLINE = "India's premium slow-travel experts — crafting bespoke journeys, one unhurried adventure at a time.";
 
 const COL_COMPANY = [
@@ -28,7 +28,7 @@ const COL_CONTACT = [
   { icon: <MapPin size={13} />, text: 'Kochi: 28/1859, Civil Line Rd, opp. City Silk, Sonia Nagar, Palarivattom, Kochi, Ernakulam, Kerala 682025' },
   { icon: <MapPin size={13} />, text: 'Haridwar: 42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401' },
   { icon: <Phone size={13} />, text: '+91 75005 98759' },
-  { icon: <Mail size={13} />, text: 'explore@tripzy.com' },
+  { icon: <Mail size={13} />, text: 'explore@flyandgo.com' },
   { icon: <Clock size={13} />, text: 'Mon – Sat: 09:00 AM – 06:00 PM' },
 ];
 

@@ -237,8 +237,8 @@ const ContactEnquirySection: React.FC = () => {
   };
 
   const handlePhoneCall = () => window.open('tel:+917500598759', '_self');
-  const handleWhatsApp = () => window.open('https://wa.me/917500598759?text=Hi%20Tripzy%2C%20I%20would%20like%20to%20connect%20with%20you%20on%20WhatsApp', '_blank');
-  const handleEmail = () => window.open('mailto:concierge@tripzy.travel', '_self');
+  const handleWhatsApp = () => window.open('https://wa.me/917500598759?text=Hi%20FlyandGO%2C%20I%20would%20like%20to%20connect%20with%20you%20on%20WhatsApp', '_blank');
+  const handleEmail = () => window.open('mailto:concierge@flyandgo.com', '_self');
 
   /* ── Helper for field style ── */
   const fieldStyle = (field: string): React.CSSProperties =>
@@ -394,7 +394,7 @@ const ContactEnquirySection: React.FC = () => {
             <InfoCard
               icon={<MessageCircle size={20} />}
               label="Connect on WhatsApp"
-              value="+91 75005 98759"
+              value="+91 82795 63419"
               onClick={handleWhatsApp}
             />
             <InfoCard
@@ -404,9 +404,15 @@ const ContactEnquirySection: React.FC = () => {
               onClick={handlePhoneCall}
             />
             <InfoCard
+              icon={<Phone size={20} />}
+              label="Call us"
+              value="+91 82795 63419"
+              onClick={handlePhoneCall}
+            />
+            <InfoCard
               icon={<Mail size={20} />}
               label="Email us"
-              value="concierge@tripzy.travel"
+              value="concierge@flyandgo.com"
               onClick={handleEmail}
             />
             <InfoCard

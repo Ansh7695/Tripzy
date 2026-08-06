@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
                 className={`font-extrabold text-xl tracking-wider uppercase transition-colors duration-500 ${scrolled ? 'text-slate-900' : 'text-white'
                   }`}
               >
-                TRIPZY
+                FLYANDGO
               </span>
             </div>
           </Link>

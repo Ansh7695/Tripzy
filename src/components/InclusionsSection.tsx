@@ -292,7 +292,7 @@ const InclusionsSection: React.FC = () => {
             className="text-base text-white/50 leading-relaxed max-w-2xl font-sans text-center"
             style={{ fontFamily: 'var(--font-body)', fontSize: '16px', color: 'rgba(255,255,255,0.45)' }}
           >
-            Every Tripzy package includes all essential boutique amenities to guarantee a seamless, slow-paced journey. Sit back, relax, and let our travel architects handle the details.
+            Every FlyandGO package includes all essential boutique amenities to guarantee a seamless, slow-paced journey. Sit back, relax, and let our travel architects handle the details.
           </p>
         </div>
 

@@ -139,7 +139,7 @@ const Preloader: React.FC<PreloaderProps> = ({ isLoading }) => {
 
         {/* Brand Text */}
         <h2 className="text-3xl font-bold tracking-wider text-white mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          Tripzy
+          FlyandGO
         </h2>
         <p className="text-sm font-semibold tracking-widest text-[#0ea5e9] uppercase mb-6">
           Wander & Explore

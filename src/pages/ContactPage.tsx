@@ -116,7 +116,7 @@ const ContactPage: React.FC = () => {
             >
               <img 
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
-                alt="Tripzy consulting room" 
+                alt="FlyandGO consulting room" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none" />
@@ -204,7 +204,7 @@ const ContactPage: React.FC = () => {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <a href="https://wa.me/917500598759?text=Hi%20Tripzy%2C%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package" target="_blank" rel="noreferrer" className="btn-outline px-6 py-3 text-[10px]">
+              <a href="https://wa.me/917500598759?text=Hi%20FlyandGO%2C%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package" target="_blank" rel="noreferrer" className="btn-outline px-6 py-3 text-[10px]">
                 Inquiry Now
               </a>
               <a href="tel:+917500598759" className="btn-ghost px-6 py-3 text-[10px]">

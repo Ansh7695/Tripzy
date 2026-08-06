@@ -59,7 +59,7 @@ const ContactCTA: React.FC = () => {
 
           {/* Buttons row */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mt-2">
-            <a href="https://wa.me/917500598759?text=Hi%20Tripzy%2C%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package" target="_blank" rel="noreferrer" className="sm:w-auto">
+            <a href="https://wa.me/917500598759?text=Hi%20FlyandGO%2C%20I%20would%20like%20to%20inquire%20about%20a%20tour%20package" target="_blank" rel="noreferrer" className="sm:w-auto">
               <button
                 className="btn px-7 py-3.5 sm:px-10 sm:py-5 text-center text-sm sm:text-base"
                 style={{ fontFamily: 'var(--font-body)', minWidth: '150px' }}
