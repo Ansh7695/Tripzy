@@ -1,3 +1,7 @@
+# Disable directory browsing & set default entry point
+Options -Indexes
+DirectoryIndex index.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
