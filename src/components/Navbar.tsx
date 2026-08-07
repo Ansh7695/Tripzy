@@ -45,9 +45,9 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
             <div
-              className={`px-3 py-1.5 rounded-xl transition-all duration-500 ${
+              className={`px-3 py-1.5 rounded-none transition-all duration-500 ${
                 !scrolled
-                  ? 'bg-white shadow-[0_4px_20px_rgba(0,0,0,0.18)] border border-white/40'
+                  ? 'bg-white shadow-[0_4px_20px_rgba(0,0,0,0.18)]'
                   : 'bg-transparent'
               }`}
             >

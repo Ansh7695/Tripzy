@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                 marginBottom: '1rem',
                 backgroundColor: '#ffffff',
                 padding: '0.45rem 0.9rem',
-                borderRadius: '12px',
+                borderRadius: 0,
                 boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
               }}
             >
