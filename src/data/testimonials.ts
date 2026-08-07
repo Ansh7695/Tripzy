@@ -18,7 +18,7 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Aria Thompson',
+    name: 'Aarohi Mehta',
     role: 'Solo Explorer',
     destination: 'Ladakh, India',
     quote: 'The Ladakh trip was pure magic. Every morning I woke up to pristine mountain air and monasteries draped in prayer flags. The guides were exceptional — they shared stories that no guidebook could.',
@@ -32,7 +32,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 2,
-    name: 'Julian Carter',
+    name: 'Vikramaditya Joshi',
     role: 'Travel Blogger',
     destination: 'Bali, Indonesia',
     quote: 'Absolutely fell in love with the itinerary. From hidden temples to sunrise volcano treks, every moment felt curated by someone who truly understands slow, intentional travel.',
@@ -46,7 +46,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 3,
-    name: 'Elena Rostova',
+    name: 'Kavya Nair',
     role: 'Family Vacationer',
     destination: 'Kerala, India',
     quote: 'Everything was organized to perfection. From the serene houseboat mornings to the thrilling spice plantation walks — my children still talk about it.',
@@ -57,7 +57,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 4,
-    name: 'Marcus Chen',
+    name: 'Aditya Sharma',
     role: 'Luxury Traveller',
     destination: 'Santorini, Greece',
     quote: 'Boutique cave hotels, private yacht sunsets, and authentic dining.',
@@ -69,7 +69,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 5,
-    name: 'Sophie Laurent',
+    name: 'Ananya Iyer',
     role: 'Honeymoon Couple',
     destination: 'Maldives',
     quote: 'Our honeymoon was nothing short of a dream. Private overwater villa and sandbank dinners.',
@@ -91,7 +91,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 7,
-    name: 'Sarah Jenkins',
+    name: 'Sunita Deshmukh',
     role: 'Culture seeker',
     destination: 'Rajasthan',
     quote: 'Staying in royal forts and walking heritage trails with storytellers.',

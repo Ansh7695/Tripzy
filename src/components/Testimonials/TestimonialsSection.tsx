@@ -7,7 +7,7 @@ import { trustStats } from '../../data/testimonials';
 const scrollTestimonials = [
   {
     id: 1,
-    name: 'Aria Thompson',
+    name: 'Aarohi Mehta',
     role: 'Solo Explorer',
     destination: 'Ladakh, India',
     quote: 'The Ladakh trip was pure magic. Every morning I woke up to pristine mountain air and monasteries draped in prayer flags. The guides were exceptional — they shared stories no guidebook could.',
@@ -18,7 +18,7 @@ const scrollTestimonials = [
   },
   {
     id: 2,
-    name: 'Julian Carter',
+    name: 'Vikramaditya Joshi',
     role: 'Travel Blogger',
     destination: 'Bali, Indonesia',
     quote: 'Absolutely fell in love with the itinerary. From hidden temples to sunrise volcano treks, every moment felt curated by someone who truly understands slow, intentional travel.',
@@ -29,7 +29,7 @@ const scrollTestimonials = [
   },
   {
     id: 3,
-    name: 'Elena Rostova',
+    name: 'Kavya Nair',
     role: 'Family Vacationer',
     destination: 'Kerala, India',
     quote: 'Everything was organized to perfection. From the serene houseboat mornings to the thrilling spice plantation walks — my children still talk about it every single day.',
@@ -40,7 +40,7 @@ const scrollTestimonials = [
   },
   {
     id: 4,
-    name: 'Marcus Chen',
+    name: 'Aditya Sharma',
     role: 'Luxury Traveller',
     destination: 'Santorini, Greece',
     quote: 'Boutique cave hotels, private yacht sunsets, and authentic dining. This was the most indulgent and perfectly planned trip I have ever experienced in my life.',
@@ -51,7 +51,7 @@ const scrollTestimonials = [
   },
   {
     id: 5,
-    name: 'Sophie Laurent',
+    name: 'Ananya Iyer',
     role: 'Honeymoon Couple',
     destination: 'Maldives',
     quote: 'Our honeymoon was nothing short of a dream. Private overwater villa, sandbank dinners under the stars, and crystal-clear turquoise waters — absolutely unforgettable.',
@@ -73,7 +73,7 @@ const scrollTestimonials = [
   },
   {
     id: 7,
-    name: 'Sarah Jenkins',
+    name: 'Sunita Deshmukh',
     role: 'Culture Seeker',
     destination: 'Rajasthan',
     quote: 'Staying in royal forts and walking heritage trails with passionate storytellers was a deeply moving experience. Rajasthan truly lives and breathes its history.',
@@ -84,7 +84,7 @@ const scrollTestimonials = [
   },
   {
     id: 8,
-    name: 'Nadia Okonkwo',
+    name: 'Neha Agarwal',
     role: 'Wildlife Photographer',
     destination: 'Jim Corbett, India',
     quote: 'I captured photographs I had only dreamed of. The safari planning was impeccable and every early morning jeep ride brought new, breathtaking encounters with nature.',
@@ -95,7 +95,7 @@ const scrollTestimonials = [
   },
   {
     id: 9,
-    name: "Liam O'Brien",
+    name: 'Lakshya Verma',
     role: 'Backpacker',
     destination: 'Vietnam Coast',
     quote: "The coast-to-coast Vietnam itinerary was crafted brilliantly. Hoi An lanterns, Ha Long Bay cruise, and the street food in Hanoi — every single detail was just right.",
@@ -117,7 +117,7 @@ const scrollTestimonials = [
   },
   {
     id: 11,
-    name: 'Carlos Mendez',
+    name: 'Chirag Patel',
     role: 'Digital Nomad',
     destination: 'Thailand Islands',
     quote: "Island hopping done right. Each stop felt unique and unhurried. The team even arranged a private long-tail boat excursion that wasn't on the standard package. Exceptional.",
@@ -128,7 +128,7 @@ const scrollTestimonials = [
   },
   {
     id: 12,
-    name: 'Yuki Tanaka',
+    name: 'Ishaan Singhania',
     role: 'Couple Traveller',
     destination: 'Kashmir, India',
     quote: 'The shikara rides at dawn on Dal Lake, saffron fields stretching to the horizon, and a cozy houseboat with a personal chef — Kashmir is pure poetry, beautifully arranged.',
@@ -189,44 +189,46 @@ interface ScrollCardData {
 const ScrollCard: React.FC<{ testimonial: ScrollCardData }> = ({ testimonial }) => {
   return (
     <div
-      className="flex-shrink-0 w-[340px] sm:w-[380px] rounded-2xl p-6 flex flex-col gap-3 transition-all duration-300 hover:border-[var(--color-gold)]/30"
+      className="flex-shrink-0 w-[300px] sm:w-[350px] md:w-[380px] h-[260px] sm:h-[285px] rounded-2xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:border-[var(--color-gold)]/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.45)] hover:-translate-y-1"
       style={{
         background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        border: '1px solid rgba(255,255,255,0.09)',
         backdropFilter: 'blur(16px)',
-        boxShadow: '0 12px 40px rgba(0,0,0,0.3)',
+        boxShadow: '0 14px 36px rgba(0,0,0,0.32)',
       }}
     >
-      {/* Quote icon + rating */}
-      <div className="flex items-center justify-between">
-        <Quote className="w-7 h-7 opacity-30" style={{ color: 'var(--color-gold)' }} />
-        <div className="flex gap-0.5">
+      {/* Top Header: Quote icon + rating */}
+      <div className="flex items-center justify-between shrink-0 mb-2">
+        <Quote className="w-6 h-6 sm:w-7 sm:h-7 opacity-35" style={{ color: 'var(--color-gold)' }} />
+        <div className="flex gap-1 items-center">
           {[...Array(testimonial.rating)].map((_, i) => (
             <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
           ))}
         </div>
       </div>
 
-      {/* Review text */}
-      <p className="text-[13px] leading-relaxed text-white/65 flex-1">
-        "{testimonial.quote}"
-      </p>
+      {/* Review text with line-clamp for overflow & uniform height */}
+      <div className="flex-1 min-h-0 flex items-center my-2">
+        <p className="text-[13px] sm:text-[14px] leading-relaxed text-white/75 italic line-clamp-4">
+          "{testimonial.quote}"
+        </p>
+      </div>
 
       {/* Profile footer */}
       <div
-        className="flex items-center justify-between pt-3"
-        style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
+        className="flex items-center justify-between pt-3.5 shrink-0"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
       >
-        <div className="flex-1 min-w-0">
-          <h4 className="text-xs font-bold text-white truncate">{testimonial.name}</h4>
-          <span className="text-[10px] text-white/40 block truncate">{testimonial.role}</span>
+        <div className="flex-1 min-w-0 pr-3">
+          <h4 className="text-xs sm:text-sm font-bold text-white truncate">{testimonial.name}</h4>
+          <span className="text-[10px] sm:text-[11px] text-white/45 block truncate font-medium mt-0.5">{testimonial.role}</span>
         </div>
         <div className="text-right shrink-0">
-          <span className="text-[10px] font-semibold block" style={{ color: 'var(--color-gold)' }}>
+          <span className="text-[10px] sm:text-[11px] font-semibold block uppercase tracking-wider" style={{ color: 'var(--color-gold)' }}>
             {testimonial.destination}
           </span>
           {testimonial.verified && (
-            <span className="inline-flex items-center gap-0.5 text-[8px] text-emerald-400 mt-0.5">
+            <span className="inline-flex items-center gap-1 text-[9px] text-emerald-400 font-medium mt-0.5">
               <CheckCircle2 className="w-2.5 h-2.5" /> Verified
             </span>
           )}
@@ -262,17 +264,17 @@ const ScrollRow: React.FC<ScrollRowProps> = ({ items, direction, speed = 40 }) =
   return (
     <div
       className="overflow-hidden w-full"
-      style={{ paddingTop: '16px', paddingBottom: '16px' }}
+      style={{ paddingTop: '14px', paddingBottom: '14px' }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
       <div
         ref={trackRef}
-        className="flex gap-5"
+        className="flex gap-7 sm:gap-8"
         style={{
           width: 'fit-content',
-          paddingLeft: '24px',
-          paddingRight: '24px',
+          paddingLeft: 'clamp(1.25rem, 5vw, 3rem)',
+          paddingRight: 'clamp(1.25rem, 5vw, 3rem)',
           animation: `${animationName} ${speed}s linear infinite`,
           animationPlayState: paused ? 'paused' : 'running',
         }}
