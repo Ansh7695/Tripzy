@@ -113,13 +113,17 @@ const Footer: React.FC = () => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 textDecoration: 'none',
-                marginBottom: '0.85rem',
+                marginBottom: '1rem',
+                backgroundColor: '#ffffff',
+                padding: '0.45rem 0.9rem',
+                borderRadius: '12px',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
               }}
             >
               <img
                 src={mainLogo}
                 alt={BRAND}
-                style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
+                style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
               />
             </Link>
 

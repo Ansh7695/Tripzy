@@ -44,11 +44,19 @@ const Navbar: React.FC = () => {
         <div className="section-container w-full h-full flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
-            <img
-              src={mainLogo}
-              alt="FlyAndGo Logo"
-              className="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
+            <div
+              className={`px-3 py-1.5 rounded-xl transition-all duration-500 ${
+                !scrolled
+                  ? 'bg-white shadow-[0_4px_20px_rgba(0,0,0,0.18)] border border-white/40'
+                  : 'bg-transparent'
+              }`}
+            >
+              <img
+                src={mainLogo}
+                alt="FlyAndGo Logo"
+                className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
           </Link>
 
           {/* Desktop Nav Links */}
