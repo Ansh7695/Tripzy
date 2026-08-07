@@ -64,10 +64,10 @@ const TermsPage: React.FC = () => {
             </div>
             <div>
               <h3 className="text-lg font-bold text-amber-300 mb-2 uppercase tracking-wide">
-                Critical Notice: Advance Payment Policy
+                Cancellation & Refund Policy Notice
               </h3>
               <p className="text-sm text-amber-100/90 leading-relaxed font-medium">
-                <strong>STRICT ADVANCE MONEY POLICY:</strong> Any advance money, booking deposit, token amount, or initial installment paid to FlyandGO to reserve tour packages, accommodations, permits, or transportation services is <strong>STRICTLY NON-REFUNDABLE IN ANY CIRCUMSTANCES</strong>. Once an advance payment is made, it cannot be refunded, transferred, or reimbursed under any condition, including traveler cancellation, personal emergencies, flight changes, or unforeseen weather disruptions.
+                <strong>15-DAY REFUND POLICY:</strong> If you cancel your tour booking <strong>15 days or more prior to your scheduled journey departure date</strong>, your journey amount is <strong>FULL-REFUNDABLE</strong> (minus non-refundable permit fees and bank processing charges). However, cancellations made within 14 days of departure or non-refundable initial token deposits are strictly non-refundable under any circumstances.
               </p>
             </div>
           </div>
@@ -120,15 +120,14 @@ const TermsPage: React.FC = () => {
           {/* Section 4 */}
           <div className="bg-white/4 border border-white/8 rounded-2xl p-6 sm:p-8 backdrop-blur-md">
             <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-3" style={{ fontFamily: 'var(--font-heading)' }}>
-              <span className="text-[var(--color-gold)] font-mono text-base">04.</span> Cancellations & Amendment Policy
+              <span className="text-[var(--color-gold)] font-mono text-base">04.</span> Cancellations & Refund Policy
             </h2>
             <p className="mb-3">
               Should you need to cancel or alter your trip, written notification must be sent to our official email address at <strong>bookings@flyandgo.in</strong>.
             </p>
             <div className="space-y-3 border-l-2 border-[var(--color-gold)]/40 pl-4 py-1 my-4">
-              <p><strong>Cancellation 30+ Days Before Departure:</strong> The advance money remains non-refundable. Any additional amounts paid beyond the advance deposit will be evaluated for partial travel credit minus third-party vendor cancellation penalties.</p>
-              <p><strong>Cancellation Within 15 to 29 Days:</strong> 50% of total package cost is retained. Advance money is non-refundable.</p>
-              <p><strong>Cancellation Within 0 to 14 Days / No Show:</strong> 100% of the total tour cost is forfeited. No refund or credit will be issued.</p>
+              <p><strong>Cancellation 15 Days or More Before Journey Departure:</strong> If you cancel your booking 15 days or more prior to your scheduled journey start date, your journey amount is <strong>REFUNDABLE</strong> (minus minimal non-refundable permit fees and bank processing charges).</p>
+              <p><strong>Cancellation Within 0 to 14 Days Before Journey Departure / No Show:</strong> If cancellation occurs within 14 days of the departure date, 100% of the total tour cost is forfeited and no refund will be issued.</p>
             </div>
           </div>
 

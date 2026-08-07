@@ -117,7 +117,7 @@ const PrivacyPage: React.FC = () => {
               All financial transactions and advance money payments submitted to FlyandGO are processed using bank-grade 256-bit SSL encryption via authorized Payment Gateways and official banking channels.
             </p>
             <p className="mb-3">
-              As stipulated in our booking conditions, <strong>advance money deposited for tour reservations is non-refundable in any circumstances</strong> once transactions are confirmed. Payment records and transaction logs are maintained securely for accounting, auditing, and tax compliance under Indian fiscal law.
+              As stipulated in our booking conditions, <strong>if you cancel 15 days or more prior to your scheduled journey departure date, your journey amount is refundable</strong> (minus non-refundable permit costs and bank processing fees). Cancellations made within 14 days of departure or non-refundable initial token deposits are non-refundable. Payment records and transaction logs are maintained securely for accounting, auditing, and tax compliance under Indian fiscal law.
             </p>
           </div>
 
