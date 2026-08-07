@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Compass, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import mainLogo from '../assets/MainLogo.png';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,18 +42,13 @@ const Navbar: React.FC = () => {
         style={{ height: '80px' }}
       >
         <div className="section-container w-full h-full flex items-center justify-between">
-          {/* Logo & Tagline */}
-          <Link to="/" className="flex flex-col group shrink-0">
-            <div className="flex items-center gap-3">
-              <Compass className="w-7 h-7 text-[var(--color-orange)] group-hover:rotate-45 transition-transform duration-500" />
-              <span
-                style={{ fontFamily: 'var(--font-heading)' }}
-                className={`font-extrabold text-xl tracking-wider uppercase transition-colors duration-500 ${scrolled ? 'text-slate-900' : 'text-white'
-                  }`}
-              >
-                FLYANDGO
-              </span>
-            </div>
+          {/* Logo */}
+          <Link to="/" className="flex items-center group shrink-0">
+            <img
+              src={mainLogo}
+              alt="FlyAndGo Logo"
+              className="h-11 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Nav Links */}

@@ -6,6 +6,7 @@ import TestimonialsSection from '../components/Testimonials/TestimonialsSection'
 import ScrapbookSection from '../components/Scrapbook/ScrapbookSection';
 import InclusionsSection from '../components/InclusionsSection';
 import ContactCTA from '../components/ContactCTA';
+import SEO from '../components/SEO';
 
 const destinationRibbon = [
   'Ladakh', 'Goa', 'Kerala', 'Rajasthan', 'Sikkim', 'Manali', 'Kashmir', 'Varanasi',
@@ -15,6 +16,10 @@ const destinationRibbon = [
 const HomePage: React.FC = () => {
   return (
     <div className="relative bg-[var(--color-navy)] text-white">
+      <SEO
+        title="Home - Premium Travel & Curated Tours"
+        description="FlyandGO - India's premium slow-travel experts. Experience bespoke luxury travel packages, hand-crafted itineraries, and unhurried adventures."
+      />
       {/* 1. HERO */}
       <HeroSection />
 

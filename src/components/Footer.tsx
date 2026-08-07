@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import mainLogo from '../assets/MainLogo.png';
 
 /* ─────────────────────────────────────────────────────────
    REAL SITE DATA — pulled from existing codebase
@@ -17,65 +18,16 @@ const COL_COMPANY = [
 ];
 
 const COL_SUPPORT = [
-  { label: 'FAQ', to: '/faq' },
   { label: 'Privacy Policy', to: '/privacy' },
   { label: 'Terms & Conditions', to: '/terms' },
-  { label: 'Cancellation Policy', to: '/refund' },
-  { label: 'Help Center', to: '/help' },
 ];
 
 const COL_CONTACT = [
   { icon: <MapPin size={13} />, text: 'Kochi: 28/1859, Civil Line Rd, opp. City Silk, Sonia Nagar, Palarivattom, Kochi, Ernakulam, Kerala 682025' },
-  { icon: <MapPin size={13} />, text: 'Haridwar: 42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401' },
   { icon: <Phone size={13} />, text: '+91 75005 98759' },
   { icon: <Mail size={13} />, text: 'contact@flyandgo.in' },
   { icon: <Mail size={13} />, text: 'bookings@flyandgo.in' },
   { icon: <Clock size={13} />, text: 'Mon – Sat: 09:00 AM – 06:00 PM' },
-];
-
-/* Social icons — SVG paths from the original Footer.tsx */
-const COL_SOCIAL = [
-  {
-    label: 'Instagram',
-    url: 'https://instagram.com',
-    icon: (
-      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Facebook',
-    url: 'https://facebook.com',
-    icon: (
-      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    ),
-  },
-  {
-    label: 'LinkedIn',
-    url: 'https://linkedin.com',
-    icon: (
-      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-        <rect x="2" y="9" width="4" height="12" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
-  },
-  {
-    label: 'YouTube',
-    url: 'https://youtube.com',
-    icon: (
-      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2 29 29 0 0 0-.46 5.25 29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-      </svg>
-    ),
-  },
 ];
 
 /* ─────────────────────────────────────────────────────────
@@ -154,33 +106,21 @@ const Footer: React.FC = () => {
 
           {/* 3a. Brand block */}
           <div style={{ maxWidth: '300px' }}>
-            {/* Logo wordmark */}
+            {/* Logo image */}
             <Link
               to="/"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '0.6rem',
                 textDecoration: 'none',
                 marginBottom: '0.85rem',
               }}
             >
-              <Compass
-                size={26}
-                style={{ color: 'var(--color-gold)', flexShrink: 0 }}
+              <img
+                src={mainLogo}
+                alt={BRAND}
+                style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
               />
-              <span
-                style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 800,
-                  fontSize: '1.5rem',
-                  color: '#ffffff',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {BRAND}
-              </span>
             </Link>
 
             {/* Tagline / description */}
@@ -197,7 +137,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* 3b. Four link columns */}
+          {/* 3b. Three link columns */}
           <div className="footer-cols">
 
             {/* Column 1 — Company pages */}
@@ -214,7 +154,7 @@ const Footer: React.FC = () => {
             </LinkCol>
 
             {/* Column 2 — Support / legal */}
-            <LinkCol header="Support">
+            <LinkCol header="Legal & Policy">
               {COL_SUPPORT.map(({ label, to }) => (
                 <Link
                   key={label}
@@ -245,23 +185,6 @@ const Footer: React.FC = () => {
                   </span>
                   {text}
                 </span>
-              ))}
-            </LinkCol>
-
-            {/* Column 4 — Social */}
-            <LinkCol header="Follow Us">
-              {COL_SOCIAL.map(({ label, url, icon }) => (
-                <a
-                  key={label}
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="footer-link"
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-                >
-                  <span style={{ opacity: 0.7 }}>{icon}</span>
-                  {label}
-                </a>
               ))}
             </LinkCol>
 

@@ -7,6 +7,7 @@ import {
   Headphones, Zap
 } from 'lucide-react';
 import TestimonialsSection from '../components/Testimonials/TestimonialsSection';
+import SEO from '../components/SEO';
 
 
 
@@ -70,6 +71,10 @@ const AboutPage: React.FC = () => {
 
   return (
     <div className="bg-[var(--color-navy)] text-white min-h-screen">
+      <SEO
+        title="About Us - Slow Travel Experts"
+        description="Learn about FlyandGO's mission to craft authentic, unhurried, slow-travel experiences and bespoke tour packages across India."
+      />
 
       {/* ═══════════ HERO ═══════════ */}
       <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">

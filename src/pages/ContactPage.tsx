@@ -1,14 +1,19 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Compass, Globe, ArrowRight } from 'lucide-react';
+import { Globe, ArrowRight } from 'lucide-react';
 import ContactEnquirySection from '../components/ContactEnquirySection';
+import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="bg-[var(--color-navy)] text-white min-h-screen relative overflow-hidden select-none">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with FlyandGO travel experts to plan your customized tour package. Call, WhatsApp, or send an inquiry today."
+      />
       
       {/* Background Atmosphere Elements */}
       <div className="absolute top-[10%] left-[-10%] w-[600px] h-[600px] bg-[var(--color-gold)]/3 rounded-full blur-[180px] pointer-events-none z-0" />
@@ -58,7 +63,6 @@ const ContactPage: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2 text-[9px] font-extrabold uppercase tracking-[0.3em] text-[var(--color-gold)] border border-[var(--color-gold)]/25 bg-[var(--color-gold)]/8 rounded-[4px] px-4 py-2 mb-6"
           >
-            <Compass className="w-3.5 h-3.5" />
             Contact Us
           </motion.span>
 
@@ -123,14 +127,14 @@ const ContactPage: React.FC = () => {
               
               <div className="absolute bottom-6 left-6 flex items-center gap-2 bg-slate-900/80 border border-white/10 px-4 py-2 rounded-xl backdrop-blur-md">
                 <Globe className="w-4 h-4 text-[var(--color-gold)]" />
-                <span className="text-[10px] text-white font-bold uppercase tracking-wider">Kochi & Haridwar Offices</span>
+                <span className="text-[10px] text-white font-bold uppercase tracking-wider">Kochi Head Office</span>
               </div>
             </motion.div>
 
             {/* Right Column: Editorial metadata details */}
             <div className="text-left flex flex-col justify-center h-full">
               <span className="text-[9px] uppercase tracking-[0.3em] font-extrabold text-[var(--color-gold)] block mb-5">
-                Our Offices
+                Our Office
               </span>
               <h2 
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
@@ -140,18 +144,13 @@ const ContactPage: React.FC = () => {
               </h2>
               
               <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-6">
-                Visit our regional offices or connect with our slow-travel concierges to plan your next bespoke adventure.
+                Visit our office or connect with our slow-travel concierges to plan your next bespoke adventure.
               </p>
 
               <div className="flex flex-col gap-5 mb-8">
                 <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
-                  <h4 className="text-xs uppercase tracking-wider font-bold text-[var(--color-gold)] mb-1">Kochi Office</h4>
+                  <h4 className="text-xs uppercase tracking-wider font-bold text-[var(--color-gold)] mb-1">Kochi Head Office</h4>
                   <p className="text-sm text-white/90">28/1859, Civil Line Rd, opp. City Silk, Sonia Nagar, Palarivattom, Kochi, Ernakulam, Kerala 682025</p>
-                </div>
-
-                <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
-                  <h4 className="text-xs uppercase tracking-wider font-bold text-[var(--color-gold)] mb-1">Haridwar Office</h4>
-                  <p className="text-sm text-white/90">42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401</p>
                 </div>
               </div>
 

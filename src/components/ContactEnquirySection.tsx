@@ -427,17 +427,6 @@ const ContactEnquirySection: React.FC = () => {
               }
             />
             <InfoCard
-              icon={<MapPin size={20} />}
-              label="Haridwar Office"
-              value="42/89 Kankhal Rd, Devpura, Haridwar, Uttarakhand 249401"
-              onClick={() =>
-                window.open(
-                  'https://www.google.com/maps/search/42%2F89+Kankhal+Rd,+Devpura,+Haridwar,+Uttarakhand+249401',
-                  '_blank'
-                )
-              }
-            />
-            <InfoCard
               icon={<Clock size={20} />}
               label="Business hours"
               value="Mon – Sat, 09:00 AM – 06:00 PM"

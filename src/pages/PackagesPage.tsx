@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { packages, categories, type Package } from '../data/packages';
 import InclusionsSection from '../components/InclusionsSection';
+import SEO from '../components/SEO';
 
 // ─── Luxury Badge ────────────────────────────────────────────
 const luxuryColors: Record<string, string> = {
@@ -164,6 +165,10 @@ const PackagesPage: React.FC = () => {
 
   return (
     <div className="bg-[var(--color-navy)] text-white min-h-screen">
+      <SEO
+        title="Tour Packages - Bespoke Destinations"
+        description="Browse FlyandGO's curated tour packages for Kerala, Rajasthan, Kashmir, Ladakh, Bali, Maldives, and more luxury holiday destinations."
+      />
 
       {/* ═══════════ HERO ═══════════ */}
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">

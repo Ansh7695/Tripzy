@@ -214,15 +214,9 @@ const ScrollCard: React.FC<{ testimonial: ScrollCardData }> = ({ testimonial }) 
 
       {/* Profile footer */}
       <div
-        className="flex items-center gap-3 pt-3"
+        className="flex items-center justify-between pt-3"
         style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}
       >
-        <img
-          src={testimonial.avatar}
-          alt={testimonial.name}
-          className="w-9 h-9 rounded-full object-cover"
-          style={{ border: '1.5px solid rgba(255,255,255,0.12)' }}
-        />
         <div className="flex-1 min-w-0">
           <h4 className="text-xs font-bold text-white truncate">{testimonial.name}</h4>
           <span className="text-[10px] text-white/40 block truncate">{testimonial.role}</span>

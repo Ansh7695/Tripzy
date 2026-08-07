@@ -45,17 +45,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial, isActive
       </div>
 
       {/* Bottom Area: Name and Place */}
-      <div className="relative z-10 flex items-center gap-4 pt-4 border-t border-white/15">
-        <img
-          src={testimonial.avatar}
-          alt={testimonial.name}
-          className="w-12 h-12 rounded-full object-cover border-2 border-white/70 shadow-md"
-        />
+      <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/15">
         <div className="flex flex-col">
           <h4 className="text-[15px] font-bold text-white leading-tight">{testimonial.name}</h4>
           <span className="text-[11px] font-semibold text-[var(--color-gold-light)] leading-tight mt-0.5">{testimonial.role}</span>
         </div>
-        <div className="ml-auto flex items-center gap-1.5 text-[11px] text-white/75 font-semibold uppercase tracking-[0.12em]">
+        <div className="flex items-center gap-1.5 text-[11px] text-white/75 font-semibold uppercase tracking-[0.12em]">
           <MapPin className="w-3.5 h-3.5" />
           <span>{testimonial.destination}</span>
         </div>

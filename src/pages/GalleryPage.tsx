@@ -1,9 +1,14 @@
 import React from 'react';
 import { Camera } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const GalleryPage: React.FC = () => {
   return (
     <div className="bg-[var(--color-navy)] min-h-screen pt-32 pb-24 text-white flex flex-col items-center justify-center relative overflow-hidden">
+      <SEO
+        title="Travel Gallery - Visual Journeys"
+        description="Explore breathtaking photography and real travel moments captured across iconic destinations worldwide with FlyandGO."
+      />
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-10 w-96 h-96 bg-[var(--color-gold)]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[var(--color-orange)]/4 rounded-full blur-3xl pointer-events-none" />
