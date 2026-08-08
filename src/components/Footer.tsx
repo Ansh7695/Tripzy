@@ -17,11 +17,6 @@ const COL_COMPANY = [
   { label: 'Contact', to: '/contact' },
 ];
 
-const COL_SUPPORT = [
-  { label: 'Privacy Policy', to: '/privacy' },
-  { label: 'Terms & Conditions', to: '/terms' },
-];
-
 const COL_CONTACT = [
   { icon: <MapPin size={13} />, text: 'Kochi: 28/1859, Civil Line Rd, opp. City Silk, Sonia Nagar, Palarivattom, Kochi, Ernakulam, Kerala 682025' },
   { icon: <Phone size={13} />, text: '+91 75005 98759' },
@@ -142,25 +137,12 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* 3b. Three link columns */}
+          {/* 3b. Two link columns */}
           <div className="footer-cols">
 
             {/* Column 1 — Company pages */}
             <LinkCol header="Company">
               {COL_COMPANY.map(({ label, to }) => (
-                <Link
-                  key={label}
-                  to={to}
-                  className="footer-link"
-                >
-                  {label}
-                </Link>
-              ))}
-            </LinkCol>
-
-            {/* Column 2 — Support / legal */}
-            <LinkCol header="Legal & Policy">
-              {COL_SUPPORT.map(({ label, to }) => (
                 <Link
                   key={label}
                   to={to}
