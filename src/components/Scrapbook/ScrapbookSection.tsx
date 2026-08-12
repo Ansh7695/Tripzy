@@ -306,7 +306,7 @@ const ScrapbookSection: React.FC = () => {
                       onClick={() => setSelectedPhoto(null)}
                       className="btn-outline px-8 py-3"
                     >
-                      Return to Gallery
+                      Close Preview
                     </button>
                   </div>
 

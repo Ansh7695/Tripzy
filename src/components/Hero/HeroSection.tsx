@@ -92,7 +92,9 @@ const HeroSection: React.FC = () => {
               className="gsap-desc text-[14px] sm:text-[15px] md:text-[17px] leading-[1.75] max-w-[420px] sm:max-w-[480px]"
               style={{ color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-body)', marginBottom: '40px' }}
             >
-              Escape the ordinary. We design bespoke, slow expeditions that immerse you deeply in local communities, untouched nature, and handcrafted boutique stays.
+              ✈️ FlyandGo — Your Journey, Our Passion! 🌍
+              Discover unforgettable destinations with our carefully curated travel packages. From dream vacations to exciting getaways, we make every journey smooth, memorable & hassle-free.
+              🌎 Travel More. Explore More. FlyandGo
             </p>
 
             {/* Button Twins */}

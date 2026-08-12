@@ -7,14 +7,16 @@ import mainLogo from '../assets/MainLogo.png';
    REAL SITE DATA — pulled from existing codebase
 ───────────────────────────────────────────────────────── */
 const BRAND = 'FlyandGO';
-const TAGLINE = "India's premium slow-travel experts — crafting bespoke journeys, one unhurried adventure at a time.";
+const TAGLINE = `✈️ FlyandGo — Your Journey, Our Passion! 🌍
+Discover unforgettable destinations with our carefully curated travel packages. From dream vacations to exciting getaways, we make every journey smooth, memorable & hassle-free.
+🌎 Travel More. Explore More. FlyandGo`;
 
 const COL_COMPANY = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
   { label: 'Packages', to: '/packages' },
-  { label: 'Gallery', to: '/gallery' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Terms & Conditions', to: '/terms' },
 ];
 
 const COL_CONTACT = [
@@ -131,6 +133,7 @@ const Footer: React.FC = () => {
                 color: 'rgba(255,255,255,0.5)',
                 lineHeight: 1.65,
                 maxWidth: '280px',
+                whiteSpace: 'pre-line',
               }}
             >
               {TAGLINE}
@@ -186,9 +189,12 @@ const Footer: React.FC = () => {
           style={{ marginTop: '3rem' }}
         >
           <span>© {year} {BRAND}. All rights reserved.</span>
-          <span>
-            Developed by Ansh Sharma
-          </span>
+          <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+            <Link to="/terms" className="footer-link" style={{ fontSize: '0.8rem' }}>
+              Terms of Service
+            </Link>
+            <span>Developed by Ansh Sharma</span>
+          </div>
         </div>
 
         {/* ════════════════════════════════════
